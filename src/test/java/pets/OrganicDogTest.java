@@ -55,7 +55,7 @@ public class OrganicDogTest {
 	}
 	
 	@Test
-	public void verifyHealthDecreasesFrom10to9IfHungerExceed40() {
+	public void verifyHealthDecreasesFrom10to9IfHungerEQorExceed40() {
 		underTest.drink();  //prevent water condition match
 		underTest.tick();
 		underTest.tick();
@@ -66,7 +66,7 @@ public class OrganicDogTest {
 	}
 	
 	@Test
-	public void verifyHealthDecreasesFrom10to9IfThirstExceed40() {
+	public void verifyHealthDecreasesFrom10to9IfThirstEQorExceed40() {
 		underTest.feed();  //prevent food condition match
 		underTest.tick();
 		underTest.tick();
