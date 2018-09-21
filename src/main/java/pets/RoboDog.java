@@ -2,8 +2,8 @@ package pets;
 
 public class RoboDog extends RoboPet implements PetDog {
 
-	public RoboDog() {
-		this.healthLevel = 10;
+	public RoboDog(String name) {
+		super(name);
 		this.happiness = 10;
 		this.rustLevel = 30;
 	}

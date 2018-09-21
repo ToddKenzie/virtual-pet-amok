@@ -13,7 +13,7 @@ public class OrganicCatTest {
 	
 	@Before
 	public void setUp() {
-		underTest = new OrganicCat();
+		underTest = new OrganicCat("");
 	}
 	
 	@Test

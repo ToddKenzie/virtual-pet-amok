@@ -4,8 +4,8 @@ public class RoboPet extends VirtualPet {
 
 	protected int rustLevel;
 
-	public RoboPet() {
-		super();
+	public RoboPet(String name) {
+		super(name);
 	}
 
 	public int getRustLevel() {

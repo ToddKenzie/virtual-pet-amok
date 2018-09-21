@@ -2,8 +2,8 @@ package pets;
 
 public class OrganicCat extends OrganicPet implements PetCat{
 
-	public OrganicCat() {
-		this.healthLevel = 10;
+	public OrganicCat(String name) {
+		super(name);
 		this.happiness = 10;
 		this.hunger = 25;
 		this.thirst = 25;

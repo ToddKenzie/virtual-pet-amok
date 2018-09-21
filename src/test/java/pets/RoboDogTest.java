@@ -12,7 +12,7 @@ public class RoboDogTest {
 	
 	@Before
 	public void setUp() {
-		underTest = new RoboDog();
+		underTest = new RoboDog("");
 	}
 	
 	@Test

@@ -6,9 +6,10 @@ public class OrganicPet extends VirtualPet {
 	protected int thirst;
 	protected int waste;
 
-	public OrganicPet() {
-		super();
+	public OrganicPet(String name) {
+		super(name);
 	}
+	
 
 	public int getHunger() {
 		return hunger;

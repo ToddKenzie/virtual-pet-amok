@@ -2,11 +2,13 @@ package pets;
 
 public abstract class VirtualPet {
 
+	protected String name;
 	protected int healthLevel;
 	protected int happiness;
 
-	public VirtualPet() {
-		super();
+
+	public String getName() {
+		return name;
 	}
 
 	public int getHealthLevel() {
@@ -17,8 +19,14 @@ public abstract class VirtualPet {
 		return happiness;
 	}
 
+	public VirtualPet(String name) {
+		this.name = name;
+		this.healthLevel = 10;
+	}
+
 	protected abstract void tick();
 
 	protected abstract void modifyHealthLevel();
+
 
 }

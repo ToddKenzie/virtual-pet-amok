@@ -12,7 +12,7 @@ public class OrganicDogTest {
 	
 	@Before
 	public void setUp() {
-		underTest = new OrganicDog();
+		underTest = new OrganicDog("");
 	}
 	
 	@Test

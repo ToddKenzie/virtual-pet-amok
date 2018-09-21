@@ -3,8 +3,8 @@ package pets;
 public class RoboCat extends RoboPet implements PetCat {
 
 	
-	public RoboCat() {
-		this.healthLevel = 10;
+	public RoboCat(String name) {
+		super(name);
 		this.happiness = 10;
 		this.rustLevel = 25;
 	}
