@@ -72,5 +72,12 @@ public class OrganicCatTest {
 		assertThat(healthLevel, is(9));
 	}
 	
+	@Test
+	public void verifyTickReducesHappinessFrom10to7() {
+		underTest.tick();
+		int happiness = underTest.getHappiness();
+		assertThat(happiness, is(7));
+	}
+	
 	
 }

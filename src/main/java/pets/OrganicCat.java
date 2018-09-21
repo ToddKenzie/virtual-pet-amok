@@ -1,6 +1,6 @@
 package pets;
 
-public class OrganicCat extends OrganicPet {
+public class OrganicCat extends OrganicPet implements PetCat{
 
 	public OrganicCat() {
 		this.healthLevel = 10;

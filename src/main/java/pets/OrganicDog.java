@@ -1,6 +1,6 @@
 package pets;
 
-public class OrganicDog extends OrganicPet {
+public class OrganicDog extends OrganicPet implements PetDog{
 
 	public OrganicDog() {
 		this.healthLevel = 10;
@@ -10,7 +10,7 @@ public class OrganicDog extends OrganicPet {
 		this.waste = 2;
 	}
 
-	protected void walk() {
+	public void walk() {
 		happiness += 10;
 		waste = 0;
 	}

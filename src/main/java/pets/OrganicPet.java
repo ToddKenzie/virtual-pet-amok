@@ -1,23 +1,13 @@
 package pets;
 
-public class OrganicPet {
+public class OrganicPet extends VirtualPet {
 
-	protected int healthLevel;
-	protected int happiness;
 	protected int hunger;
 	protected int thirst;
 	protected int waste;
 
 	public OrganicPet() {
 		super();
-	}
-
-	public int getHealthLevel() {
-		return healthLevel;
-	}
-
-	public int getHappiness() {
-		return happiness;
 	}
 
 	public int getHunger() {
@@ -32,18 +22,19 @@ public class OrganicPet {
 		return waste;
 	}
 
-	public void feed() {
+	protected void feed() {
 		hunger -= 10;
 	}
 
-	public void drink() {
+	protected void drink() {
 		thirst -= 10;
 	}
 
-	public void tick() {
+	protected void tick() {
 		hunger += 3;
 		thirst += 3;
 		waste++;
+		happiness -= 3;
 		modifyHealthLevel();
 	}
 
