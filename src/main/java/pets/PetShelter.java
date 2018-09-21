@@ -6,9 +6,13 @@ import java.util.Map;
 
 public class PetShelter {
 
+	private int litterBoxWaste;
 	private Map<String, VirtualPet> allPets = new HashMap<>();
 	
 	
+	public int getLitterBoxWaste() {
+		return litterBoxWaste;
+	}
 	
 	public Collection<VirtualPet> getAllPets() {
 		return allPets.values();
@@ -66,6 +70,16 @@ public class PetShelter {
 	public void tickAllPets() {
 		for(VirtualPet vPet : this.getAllPets()) {
 			vPet.tick();
+		}
+		increaseWastePiles();
+	}
+	
+	public void increaseWastePiles() {
+		for (VirtualPet vPet : this.getAllPets()) {
+			if(vPet instanceof OrganicCat) {
+				OrganicPet cat = (OrganicPet)vPet;
+				litterBoxWaste += cat.getWaste();
+			}
 		}
 	}
 

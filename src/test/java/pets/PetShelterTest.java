@@ -100,7 +100,13 @@ public class PetShelterTest {
 		assertThat(happyOD, is(7));
 		assertThat(happyRC, is(7));
 		assertThat(happyRD, is(7));
-		
 	}
 
+	
+	@Test
+	public void testThatCatWasteIncreasesLitterBoxWasteOnTick0to2() {
+		underTest.tickAllPets();
+		int litterboxWaste = underTest.getLitterBoxWaste();
+		assertThat(litterboxWaste, is(2));
+	}
 }
