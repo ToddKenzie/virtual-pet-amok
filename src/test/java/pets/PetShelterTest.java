@@ -69,10 +69,38 @@ public class PetShelterTest {
 		int rustRD = dogCheck.getRustLevel();
 		assertThat(rustRC, is(15));
 		assertThat(rustRD, is(20));
-		
-		
-		
+	}
+
+	@Test
+	public void giveWalkToOnlyDogsHappiness10to20() {
+		underTest.walkDogs();
+		int roboHappy = petRoboDog.getHappiness();
+		int orgHappy = petOrgDog.getHappiness();
+		assertThat(roboHappy, is(20));
+		assertThat(orgHappy, is(20));
 	}
 	
+	@Test
+	public void giveLasersToOnlyCatsHappiness10to20() {
+		underTest.playWithLasersWithCats();
+		int roboHappy = petRoboCat.getHappiness();
+		int orgHappy = petOrgCat.getHappiness();
+		assertThat(roboHappy, is(20));
+		assertThat(orgHappy, is(20));
+	}
+	
+	@Test
+	public void testTickAllPetsShouldReduceHappy10to7() {
+		underTest.tickAllPets();
+		int happyOC = petOrgCat.getHappiness();
+		int happyOD = petOrgDog.getHappiness();
+		int happyRC = petRoboCat.getHappiness();
+		int happyRD = petRoboDog.getHappiness();
+		assertThat(happyOC, is(7));
+		assertThat(happyOD, is(7));
+		assertThat(happyRC, is(7));
+		assertThat(happyRD, is(7));
+		
+	}
 
 }

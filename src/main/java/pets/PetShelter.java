@@ -19,33 +19,54 @@ public class PetShelter {
 	}
 
 	public void feedOrganicPets() {
-		Collection<VirtualPet> allPets = getAllPets();
-		for (VirtualPet virtualPet : allPets) {
-			if (virtualPet instanceof OrganicPet) {
-				OrganicPet petToFeed = (OrganicPet)virtualPet;
+		for (VirtualPet vPet : this.getAllPets()) {
+			if (vPet instanceof OrganicPet) {
+				OrganicPet petToFeed = (OrganicPet)vPet;
 				petToFeed.feed();
 			}
 		}
 	}
 
 	public void giveWaterToOrganicPets() {
-		Collection<VirtualPet> allPets = getAllPets();
-		for (VirtualPet virtualPet : allPets) {
-			if (virtualPet instanceof OrganicPet) {
-				OrganicPet petToGiveWater = (OrganicPet)virtualPet;
+		for (VirtualPet vPet : this.getAllPets()) {
+			if (vPet instanceof OrganicPet) {
+				OrganicPet petToGiveWater = (OrganicPet)vPet;
 				petToGiveWater.drink();
 			}
 		}		
 	}
 
 	public void oilRoboticPets() {
-		Collection<VirtualPet> allPets = getAllPets();
-		for (VirtualPet virtualPet : allPets) {
-			if (virtualPet instanceof RoboPet) {
-				RoboPet petToOil = (RoboPet)virtualPet;
+		for (VirtualPet vPet : this.getAllPets()) {
+			if (vPet instanceof RoboPet) {
+				RoboPet petToOil = (RoboPet)vPet;
 				petToOil.oil();
 			}
 		}			
+	}
+
+	public void walkDogs() {
+		for(VirtualPet vPet : this.getAllPets()) {
+			if(vPet instanceof PetDog) {
+				PetDog petToWalk = (PetDog)vPet;
+				petToWalk.walk();
+			}
+		}
+	}
+
+	public void playWithLasersWithCats() {
+		for(VirtualPet vPet : this.getAllPets()) {
+			if(vPet instanceof PetCat) {
+				PetCat petToPlayLasersWith = (PetCat)vPet;
+				petToPlayLasersWith.playWithLasers();
+			}
+		}
+	}
+
+	public void tickAllPets() {
+		for(VirtualPet vPet : this.getAllPets()) {
+			vPet.tick();
+		}
 	}
 
 }
