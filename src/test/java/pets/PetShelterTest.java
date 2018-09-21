@@ -90,23 +90,71 @@ public class PetShelterTest {
 	}
 	
 	@Test
-	public void testTickAllPetsShouldReduceHappy10to7() {
-		underTest.tickAllPets();
-		int happyOC = petOrgCat.getHappiness();
-		int happyOD = petOrgDog.getHappiness();
-		int happyRC = petRoboCat.getHappiness();
-		int happyRD = petRoboDog.getHappiness();
-		assertThat(happyOC, is(7));
-		assertThat(happyOD, is(7));
-		assertThat(happyRC, is(7));
-		assertThat(happyRD, is(7));
-	}
+		public void testTickAllShouldReduceHappy10to7() {
+			underTest.tickAll();
+			int happyOC = petOrgCat.getHappiness();
+			int happyOD = petOrgDog.getHappiness();
+			int happyRC = petRoboCat.getHappiness();
+			int happyRD = petRoboDog.getHappiness();
+			assertThat(happyOC, is(7));
+			assertThat(happyOD, is(7));
+			assertThat(happyRC, is(7));
+			assertThat(happyRD, is(7));
+		}
 
-	
 	@Test
 	public void testThatCatWasteIncreasesLitterBoxWasteOnTick0to2() {
-		underTest.tickAllPets();
+		underTest.tickAll();
 		int litterboxWaste = underTest.getLitterBoxWaste();
 		assertThat(litterboxWaste, is(2));
 	}
+	
+	@Test
+	public void testThatCleanLitterBoxWillCleanBoxTo0Waste() {
+		underTest.tickAll(); //create LitterBoxWaste
+		underTest.cleanLitterBox();
+		int litterboxWaste = underTest.getLitterBoxWaste();
+		assertThat(litterboxWaste, is(0));
+	}
+	
+	@Test
+	public void testThatCagesIncreaseCageWasteOnTick() {
+		OrganicDog orgDog2 = new OrganicDog("Sparky");
+		underTest.takeInPet(orgDog2);
+		underTest.tickAll();
+		int cageWaste = underTest.checkCageWaste(petOrgDog);
+		int cage2 = underTest.checkCageWaste(orgDog2);
+		assertThat(cageWaste, is(3));
+		assertThat(cage2, is(3));
+	}
+	
+	@Test
+	public void testThatCleanCageReduceCageWasteTo0() {
+		underTest.tickAll();
+		underTest.cleanDogCage(petOrgDog);
+		int cageWaste = underTest.checkCageWaste(petOrgDog);
+		assertThat(cageWaste, is(0));
+	}
+	
+	@Test
+	public void assertThatLitterBoxWasteEQorGreater10ReduceOrgCatHealth10to9() {
+		underTest.tickAll();
+		underTest.tickAll();
+		underTest.tickAll();
+		underTest.tickAll();
+		int orgCatHealth = petOrgCat.getHealthLevel();
+		assertThat(orgCatHealth, is(9));
+	}
+	
+	@Test
+	public void assertThatCageWasteEQorGreater10ReduceOrgDogHealth10to9() {
+		underTest.tickAll();
+		underTest.tickAll();
+		underTest.tickAll();
+		int orgDogHealth = petOrgDog.getHealthLevel();
+		assertThat(orgDogHealth, is(9));
+	}
+	
+	
+	
 }

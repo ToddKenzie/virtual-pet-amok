@@ -8,6 +8,7 @@ public class PetShelter {
 
 	private int litterBoxWaste;
 	private Map<String, VirtualPet> allPets = new HashMap<>();
+	private Map<VirtualPet, DogCage> dogCages = new HashMap<>();;
 	
 	
 	public int getLitterBoxWaste() {
@@ -20,6 +21,9 @@ public class PetShelter {
 	
 	public void takeInPet(VirtualPet pet) {
 		allPets.put(pet.getName(), pet);
+		if(pet instanceof PetDog) {
+			dogCages.put(pet, new DogCage());
+		}
 	}
 
 	public void feedOrganicPets() {
@@ -67,20 +71,61 @@ public class PetShelter {
 		}
 	}
 
-	public void tickAllPets() {
+	public void tickAll() {
 		for(VirtualPet vPet : this.getAllPets()) {
 			vPet.tick();
 		}
 		increaseWastePiles();
+		reducePetHealthFromWaste();
 	}
 	
+
 	public void increaseWastePiles() {
 		for (VirtualPet vPet : this.getAllPets()) {
-			if(vPet instanceof OrganicCat) {
-				OrganicPet cat = (OrganicPet)vPet;
-				litterBoxWaste += cat.getWaste();
+			if(vPet instanceof OrganicPet) {
+				OrganicPet orgPet = (OrganicPet)vPet;
+				if(orgPet instanceof PetDog) {
+					dogCages.get(orgPet).increaseCageWaste(orgPet);
+				} else {
+					litterBoxWaste += orgPet.getWaste();
+				}
 			}
 		}
+	}
+
+	private void reducePetHealthFromWaste() {
+		reduceCatHealthFromLitterBox();
+		reduceDogHealthFromCage();
+	}
+
+	private void reduceCatHealthFromLitterBox() {
+		if(litterBoxWaste >= 10) {
+			for (VirtualPet vPet : this.getAllPets()) {
+				if (vPet instanceof OrganicCat) {
+					vPet.reduceHealth();
+				}
+			}
+		}
+	}
+
+	private void reduceDogHealthFromCage() {
+		for(VirtualPet vPet : dogCages.keySet()) {
+			if (dogCages.get(vPet).getCageWaste() >= 10) {
+				vPet.reduceHealth();
+			}
+		}
+	}
+	
+	public void cleanLitterBox() {
+		litterBoxWaste = 0;
+	}
+
+	public int checkCageWaste(VirtualPet petOrgDog) {
+		return dogCages.get(petOrgDog).getCageWaste();
+	}
+
+	public void cleanDogCage(VirtualPet petOrgDog) {
+		dogCages.get(petOrgDog).cleanDogCage();
 	}
 
 }

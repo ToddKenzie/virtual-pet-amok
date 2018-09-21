@@ -28,5 +28,9 @@ public abstract class VirtualPet {
 
 	protected abstract void modifyHealthLevel();
 
+	public void reduceHealth() {
+		healthLevel--;
+	}
+
 
 }
