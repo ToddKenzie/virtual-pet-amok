@@ -4,7 +4,7 @@ public abstract class VirtualPet {
 
 	protected String name;
 	protected HealthLevel healthLevel;
-	protected int happiness;
+	protected Happiness happiness;
 
 
 	public String getName() {
@@ -16,11 +16,13 @@ public abstract class VirtualPet {
 	}
 
 	public int getHappiness() {
-		return happiness;
+		return happiness.getValue();
 	}
 
 	public VirtualPet(String name) {
 		this.name = name;
+		this.healthLevel = new HealthLevel();
+		this.happiness = new Happiness();
 	}
 
 	protected abstract void tick();

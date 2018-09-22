@@ -4,15 +4,14 @@ public class OrganicCat extends OrganicPet implements PetCat{
 
 	public OrganicCat(String name) {
 		super(name);
-		this.happiness = 10;
-		this.hunger = 25;
-		this.thirst = 25;
-		this.waste = 1;
+		this.hunger = new Hunger(25);
+		this.thirst = new Thirst(25);
+		this.waste = new Waste(1);
 		
 	}
 
 	public void playWithLasers() {
-		happiness += 10;
+		happiness.increaseValue();;
 	}
 
 

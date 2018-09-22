@@ -38,14 +38,12 @@ public class OrganicCatTest {
 	}
 	
 	@Test
-	public void verifyTickIncreasesHunger25to28Thirst25to28Waste1to2() {
+	public void verifyTickIncreasesHunger25to28Thirst25to28() {
 		underTest.tick();
 		int hunger = underTest.getHunger();
 		int thirst = underTest.getThirst();
-		int waste = underTest.getWaste();
 		assertThat(hunger, is(28));
 		assertThat(thirst, is(28));
-		assertThat(waste, is(2));
 	}
 	
 	@Test

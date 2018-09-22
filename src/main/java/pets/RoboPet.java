@@ -2,31 +2,31 @@ package pets;
 
 public class RoboPet extends VirtualPet {
 
-	protected int rustLevel;
+	protected RustLevel rustLevel;
 
 	public RoboPet(String name) {
 		super(name);
 	}
 
 	public int getRustLevel() {
-		return rustLevel;
+		return rustLevel.getValue();
 	}
 
 	protected void oil() {
-		rustLevel -= 10;
+		rustLevel.decreaseValue();
 	}
 
 	@Override
 	protected void tick() {
-		rustLevel += 3;
-		happiness -= 3;
+		rustLevel.increaseValue();
+		happiness.decreaseValue();
 		modifyHealthLevel();
 	}
 
 	@Override
 	protected void modifyHealthLevel() {
-		if (rustLevel >= 40) {
-			healthLevel.decreaseValue();;
+		if (rustLevel.getValue() >= 40) {
+			healthLevel.decreaseValue();
 		}
 	}
 

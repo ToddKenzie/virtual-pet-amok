@@ -105,10 +105,10 @@ public class PetShelterTest {
 		}
 
 	@Test
-	public void testThatCatWasteIncreasesLitterBoxWasteOnTick0to2() {
+	public void testThatCatWasteIncreasesLitterBoxWasteOnTick0to1() {
 		underTest.tickAll();
 		int litterboxWaste = underTest.getLitterBoxWaste();
-		assertThat(litterboxWaste, is(2));
+		assertThat(litterboxWaste, is(1));
 	}
 	
 	@Test
@@ -140,6 +140,8 @@ public class PetShelterTest {
 	
 	@Test
 	public void assertThatLitterBoxWasteEQorGreater10ReduceOrgCatHealth10to9() {
+		underTest.takeInPet(new OrganicCat("Meow2"));
+		underTest.takeInPet(new OrganicCat("Meow3"));
 		underTest.tickAll();
 		underTest.tickAll();
 		underTest.tickAll();

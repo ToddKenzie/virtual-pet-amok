@@ -2,9 +2,9 @@ package pets;
 
 public class OrganicPet extends VirtualPet {
 
-	protected int hunger;
-	protected int thirst;
-	protected int waste;
+	protected Hunger hunger;
+	protected Thirst thirst;
+	protected Waste waste;
 
 	public OrganicPet(String name) {
 		super(name);
@@ -12,39 +12,38 @@ public class OrganicPet extends VirtualPet {
 	
 
 	public int getHunger() {
-		return hunger;
+		return hunger.getValue();
 	}
 
 	public int getThirst() {
-		return thirst;
+		return thirst.getValue();
 	}
 
 	public int getWaste() {
-		return waste;
+		return waste.getValue();
 	}
 
 	protected void feed() {
-		hunger -= 10;
+		hunger.decreaseValue();
 	}
 
 	protected void drink() {
-		thirst -= 10;
+		thirst.decreaseValue();
 	}
 
 	protected void tick() {
-		hunger += 3;
-		thirst += 3;
-		waste++;
-		happiness -= 3;
+		hunger.increaseValue();
+		thirst.increaseValue();
+		happiness.decreaseValue();
 		modifyHealthLevel();
 	}
 
 	protected void modifyHealthLevel() {
-		if (hunger >= 40) {
-			healthLevel.decreaseValue();;
+		if (hunger.getValue() >= 40) {
+			healthLevel.decreaseValue();
 		}
-		if (thirst >= 40) {
-			healthLevel.decreaseValue();;
+		if (thirst.getValue() >= 40) {
+			healthLevel.decreaseValue();
 		}
 	}
 

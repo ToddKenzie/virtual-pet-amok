@@ -4,15 +4,23 @@ public class OrganicDog extends OrganicPet implements PetDog{
 
 	public OrganicDog(String name) {
 		super(name);
-		this.happiness = 10;
-		this.hunger = 30;
-		this.thirst = 30;
-		this.waste = 2;
+		this.hunger = new Hunger(30);
+		this.thirst = new Thirst(30);
+		this.waste = new Waste(2);
 	}
 
 	public void walk() {
-		happiness += 10;
-		waste = 0;
+		happiness.increaseValue();
+		waste.decreaseValue();
 	}
+	
+	protected void tick() {
+		hunger.increaseValue();
+		thirst.increaseValue();
+		waste.increaseValue();
+		happiness.decreaseValue();
+		modifyHealthLevel();
+	}
+
 
 }

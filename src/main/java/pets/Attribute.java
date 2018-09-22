@@ -9,11 +9,11 @@ public abstract class Attribute {
 	}
 	
 	public void increaseValue() {
-		value += 10;
+		value += 3;
 	}
 	
 	public void decreaseValue() {
-		value -= 3;
+		value -= 10;
 	}
 
 }
