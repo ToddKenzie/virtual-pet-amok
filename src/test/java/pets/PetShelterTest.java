@@ -1,9 +1,11 @@
 package pets;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 
 import java.util.Collection;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -154,6 +156,22 @@ public class PetShelterTest {
 		int orgDogHealth = petOrgDog.getHealthLevel();
 		assertThat(orgDogHealth, is(9));
 	}
+	
+	@Test
+	public void adoptAPetsoThereWillBe3PetsInShelter() {
+		underTest.adopt("ME-OW");
+		Collection<VirtualPet> allPets = underTest.getAllPets();
+		assertThat(allPets, containsInAnyOrder(petOrgCat, petOrgDog, petRoboDog));
+	}
+	
+	//Tested method by making cage public.  Returned to private
+//		@Test
+//		public void checkAdoptRemovesDogCage() {
+//		underTest.adopt("Woof");
+//		Set<VirtualPet> allDogs = underTest.dogCages.keySet();
+//		assertThat(allDogs, containsInAnyOrder(petRoboDog));
+//		
+//	}
 	
 	
 	

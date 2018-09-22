@@ -130,4 +130,12 @@ public class PetShelter {
 		}
 	}
 
+	public void adopt(String petName) {
+		VirtualPet vPet = allPets.get(petName);
+		if (vPet instanceof PetDog) {
+			dogCages.remove(vPet);
+		}
+		allPets.remove(petName);
+	}
+
 }
