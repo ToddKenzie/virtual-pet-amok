@@ -124,8 +124,10 @@ public class PetShelter {
 		return dogCages.get(petOrgDog).getCageWaste();
 	}
 
-	public void cleanDogCage(VirtualPet petOrgDog) {
-		dogCages.get(petOrgDog).cleanDogCage();
+	public void cleanAllDogCages() {
+		for (DogCage cage : dogCages.values()) {
+			cage.cleanDogCage();
+		}
 	}
 
 }

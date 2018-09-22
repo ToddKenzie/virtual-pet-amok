@@ -131,7 +131,7 @@ public class PetShelterTest {
 	@Test
 	public void testThatCleanCageReduceCageWasteTo0() {
 		underTest.tickAll();
-		underTest.cleanDogCage(petOrgDog);
+		underTest.cleanAllDogCages();
 		int cageWaste = underTest.checkCageWaste(petOrgDog);
 		assertThat(cageWaste, is(0));
 	}
