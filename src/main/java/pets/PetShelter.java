@@ -6,13 +6,13 @@ import java.util.Map;
 
 public class PetShelter {
 
-	private int litterBoxWaste;
+	private LitterBoxWaste litterBoxWaste = new LitterBoxWaste(0);
 	private Map<String, VirtualPet> allPets = new HashMap<>();
 	private Map<VirtualPet, DogCage> dogCages = new HashMap<>();;
 	
 	
 	public int getLitterBoxWaste() {
-		return litterBoxWaste;
+		return litterBoxWaste.getValue();
 	}
 	
 	public Collection<VirtualPet> getAllPets() {
@@ -87,7 +87,7 @@ public class PetShelter {
 				if(orgPet instanceof PetDog) {
 					dogCages.get(orgPet).increaseCageWaste(orgPet);
 				} else {
-					litterBoxWaste += orgPet.getWaste();
+					litterBoxWaste.increaseValue();
 				}
 			}
 		}
@@ -99,7 +99,7 @@ public class PetShelter {
 	}
 
 	private void reduceCatHealthFromLitterBox() {
-		if(litterBoxWaste >= 10) {
+		if(litterBoxWaste.getValue() >= 10) {
 			for (VirtualPet vPet : this.getAllPets()) {
 				if (vPet instanceof OrganicCat) {
 					vPet.reduceHealth();
@@ -117,7 +117,7 @@ public class PetShelter {
 	}
 	
 	public void cleanLitterBox() {
-		litterBoxWaste = 0;
+		litterBoxWaste.decreaseValue();
 	}
 
 	public int checkCageWaste(VirtualPet petOrgDog) {
