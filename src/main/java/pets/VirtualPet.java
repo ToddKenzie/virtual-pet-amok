@@ -3,7 +3,7 @@ package pets;
 public abstract class VirtualPet {
 
 	protected String name;
-	protected int healthLevel;
+	protected HealthLevel healthLevel;
 	protected int happiness;
 
 
@@ -12,7 +12,7 @@ public abstract class VirtualPet {
 	}
 
 	public int getHealthLevel() {
-		return healthLevel;
+		return healthLevel.getValue();
 	}
 
 	public int getHappiness() {
@@ -21,7 +21,6 @@ public abstract class VirtualPet {
 
 	public VirtualPet(String name) {
 		this.name = name;
-		this.healthLevel = 10;
 	}
 
 	protected abstract void tick();
@@ -29,7 +28,7 @@ public abstract class VirtualPet {
 	protected abstract void modifyHealthLevel();
 
 	public void reduceHealth() {
-		healthLevel--;
+		healthLevel.decreaseValue();;
 	}
 
 

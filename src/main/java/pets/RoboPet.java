@@ -26,7 +26,7 @@ public class RoboPet extends VirtualPet {
 	@Override
 	protected void modifyHealthLevel() {
 		if (rustLevel >= 40) {
-			healthLevel--;
+			healthLevel.decreaseValue();;
 		}
 	}
 

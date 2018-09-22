@@ -41,10 +41,10 @@ public class OrganicPet extends VirtualPet {
 
 	protected void modifyHealthLevel() {
 		if (hunger >= 40) {
-			healthLevel--;
+			healthLevel.decreaseValue();;
 		}
 		if (thirst >= 40) {
-			healthLevel--;
+			healthLevel.decreaseValue();;
 		}
 	}
 

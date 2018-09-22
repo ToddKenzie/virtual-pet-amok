@@ -2,7 +2,7 @@ package pets;
 
 public abstract class Attribute {
 	
-	private int value;
+	protected int value;
 	
 	public int getValue() {
 		return value;
