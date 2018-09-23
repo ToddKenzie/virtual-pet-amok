@@ -23,7 +23,7 @@ public class PetShelter {
 		return allPets.values();
 	}
 	
-	public void takeInPet(VirtualPet pet) {
+	protected void takeInPet(VirtualPet pet) {
 		allPets.put(pet.getName(), pet);
 		if(pet instanceof OrganicDog) {
 			dogCages.put(pet, new DogCage());
