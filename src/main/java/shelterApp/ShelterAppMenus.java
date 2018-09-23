@@ -10,18 +10,23 @@ public class ShelterAppMenus {
 	}
 	
 	public static String petStatus(PetShelter shelter) {
-		String petStatus = "\'Real Pets\'\n"
-				+ "Type\t|Health\t| Happy\t|Hunger\t|Thirst\t| Name\n";
-		for (VirtualPet vPet : shelter.getAllPets()) {
-			if (vPet instanceof OrganicPet) {
-				petStatus += vPet + "\n";
-			}
+		String petStatus = "\n";
+		if (verifyOrganicPetExists(shelter)) {
+			petStatus += "\'Real Pets\'\n"
+			+ "Type\t|Health\t| Happy\t|Hunger\t|Thirst\t| Name\n";
+			for (VirtualPet vPet : shelter.getAllPets()) {
+				if (vPet instanceof OrganicPet) {
+					petStatus += vPet + "\n";
+				}
+			}	
 		}
-		petStatus += "\nRobotic Pets\n"
-				+ "Type\t|Health\t| Happy\t| Rust\t| Name\n";
-		for (VirtualPet vPet : shelter.getAllPets()) {
-			if (vPet instanceof RoboPet) {
-				petStatus += vPet + "\n";
+		if (verifyRoboPetExists(shelter)) {
+			petStatus += "\nRobotic Pets\n"
+					+ "Type\t|Health\t| Happy\t| Rust\t| Name\n";
+			for (VirtualPet vPet : shelter.getAllPets()) {
+				if (vPet instanceof RoboPet) {
+					petStatus += vPet + "\n";
+				}
 			}
 		}
 		petStatus += "\nWaste Levels That May Need Your Attention\n";
@@ -66,6 +71,24 @@ public class ShelterAppMenus {
 		return closing;
 	}
 	
+	public static boolean verifyOrganicPetExists(PetShelter shelter) {
+		for (VirtualPet vPet : shelter.getAllPets()) {
+			if (vPet instanceof OrganicPet) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static boolean verifyRoboPetExists(PetShelter shelter) {
+		for (VirtualPet vPet : shelter.getAllPets()) {
+			if (vPet instanceof RoboPet) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public static boolean verifyOrganicDogExists(PetShelter shelter) {
 		for (VirtualPet vPet : shelter.getAllPets()) {
 			if (vPet instanceof OrganicDog) {

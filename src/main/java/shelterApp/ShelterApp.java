@@ -1,5 +1,6 @@
 package shelterApp;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import pets.*;
@@ -8,6 +9,7 @@ public class ShelterApp {
 
 	public static PetShelter shelter;
 	public static Scanner input;
+	public static ArrayList<String> choices;
 
 	public static void main(String[] args) {
 
@@ -22,100 +24,109 @@ public class ShelterApp {
 			if (userMainMenuInput.equalsIgnoreCase("F")) {
 				if (verifyOrganicPetExists()) {
 					shelter.feedOrganicPets();
-					System.out.println("You feed all of the pets.");
+					System.out.println("\nYou feed all of the pets.");
 				} else {
-					System.out.println("There are no pets present that can be fed.");
+					System.out.println("\nThere are no pets present that can be fed.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("D")) {
 				if (verifyOrganicPetExists()) {
 					shelter.giveWaterToOrganicPets();
-					System.out.println("You give water to all of the thirsty pets.");
+					System.out.println("\nYou give water to all of the thirsty pets.");
 				} else {
-					System.out.println("There are no pets that like water here.");
+					System.out.println("\nThere are no pets that like water here.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("O")) {
 				if (verifyRoboPetExists()) {
 					shelter.oilRoboticPets();
-					System.out.println("You lubricate the robots.");
+					System.out.println("\nYou lubricate the robots.");
 				} else {
 					System.out.println(
-							"There are no pets here who like oil.  You'd have to do a lot of clean-up and PETA would likely be called.");
+							"\nThere are no pets here who like oil.  You'd have to do a lot of clean-up and PETA would likely be called.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("W")) {
 				if (verifyWalkablePetExists()) {
 					shelter.walkDogs();
-					System.out.println("You walk the dogs.  They all seem to be happier");
+					System.out.println("\nYou walk the dogs.  They all seem to be happier");
 					if (verifyOrganicDogExists()) {
 						System.out.println(
 								"The real dogs take some extra time doing their business in the yard.  At least it's not in the cages.");
 					}
 				} else {
-					System.out.println("No pets here liked to be walked.  You may think that, but you're wrong.");
+					System.out.println("\nNo pets here liked to be walked.  You may think that, but you're wrong.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("L")) {
 				if (verifyAttractedToLasersPetExists()) {
 					shelter.playLasersWithPets();
 					System.out.println(
-							"You bring out the laser pointers.  Pets begin running all over the place chasing them.");
+							"\nYou bring out the laser pointers.  Pets begin running all over the place chasing them.");
 					if (verifyHatesLasersPetExists()) {
 						System.out
 								.println("The real dogs just get riled up with all the other animals running around.");
 					}
 				} else {
-					System.out.println("You'd only rile up the pets in the shelter.  I wouldn't advise it.");
+					System.out.println("\nYou'd only rile up the pets in the shelter.  I wouldn't advise it.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("M")) {
 				if (verifyPlaysWithToyMicePetExists()) {
 					shelter.playWithToyMice();
-					System.out.println("The cats begin throwing the mice around.");
+					System.out.println("\nThe cats begin throwing the mice around.");
 					if (verifyHatesToyMicePetExists()) {
-						System.out.println("The dogs get aggrivates with all the cats running around.");
+						System.out.println("\nThe dogs get aggrivates with all the cats running around.");
 					}
 				} else {
-					System.out.println("The dogs just stare at you.");
+					System.out.println("\nThe dogs just stare at you.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("P")) {
+				System.out.println("\nWhich pet would you like to play with?");
 				String petToPlayWith = verifyPetNameExists();
 				shelter.playWithOnePet(petToPlayWith);
-				System.out.println("You play with " + petToPlayWith +".  The rest of the pets stare at you.\nPerhaps playing with only one isn't the best option.");
-				
+				System.out.println("You play with " + petToPlayWith
+						+ ".  The rest of the pets stare at you.\nPerhaps playing with only one isn't the best option.");
+
 			} else if (userMainMenuInput.equalsIgnoreCase("CB")) {
 				shelter.cleanLitterBox();
-				System.out.println("You clean out the cats' litterbox.");
+				System.out.println("\nYou clean out the cats' litterbox.");
 
 			} else if (userMainMenuInput.equalsIgnoreCase("CC")) {
 				shelter.cleanAllDogCages();
-				System.out.println("You spend time cleaning all of the dog cages.");
+				System.out.println("\nYou spend time cleaning all of the dog cages.");
 
 			} else if (userMainMenuInput.equalsIgnoreCase("V")) {
 				if (verifyOrganicPetExists()) {
-					System.out.println("Which pet will you call the vet to treat?");
+					System.out.println("\nWhich pet will you call the vet to treat?");
 					String petToCallVet = verifyVetCanBeCalledOnPet();
 					shelter.callVet(petToCallVet);
+					System.out.println(petToCallVet + " gets treated by the vet.");
 				} else {
-					System.out.println("There are no pets here you can take to the vet.");
+					System.out.println("\nThere are no pets here you can take to the vet.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("B")) {
 				if (verifyRoboPetExists()) {
-					System.out.println("Which pet will you change the batteries?");
+					System.out.println("\nWhich pet will you change the batteries?");
 					String petToChangeBatteries = verifyBatteriesCanBeChangedOnPet();
 					shelter.changeBatteries(petToChangeBatteries);
+					System.out.println("You exchange the batteries on " + petToChangeBatteries);
 				} else {
-					System.out.println("There are no pets here with batteries.");
+					System.out.println("\nThere are no pets here with batteries.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("T")) {
-				// code to take in new pet into shelter
+				System.out.println("Which type of pet will you bring into the shelter?");
+				String petType = verifyPetChoiceToBringIn();
+				System.out.println("What will the pet's name be?");
+				String petName = verifyPetNameDoesNotExist();
+				shelter.takeInPet(petType, petName);
+				System.out.println("You brought in " + petName + ".");
 
 			} else if (userMainMenuInput.equalsIgnoreCase("A")) {
-				System.out.println("Which pet will you have adopted?");
+				System.out.println("\nWhich pet will you have adopted?");
 				String petToAdopt = verifyPetNameExists();
 				shelter.adopt(petToAdopt);
 				System.out.println(petToAdopt + " has been adopted!");
@@ -123,7 +134,7 @@ public class ShelterApp {
 			} else if (userMainMenuInput.equalsIgnoreCase("Q")) {
 				break;
 			} else {
-				System.out.println("Invalid Input");
+				System.out.println("\nInvalid Input");
 			}
 
 			shelter.tickAll();
@@ -142,6 +153,16 @@ public class ShelterApp {
 		shelter.takeInPet("RoboDog", "SPARKY");
 
 		input = new Scanner(System.in);
+
+		choices = new ArrayList<>();
+		choices.add("1");
+		choices.add("2");
+		choices.add("3");
+		choices.add("4");
+		choices.add("Cat");
+		choices.add("dog");
+		choices.add("robocat");
+		choices.add("robodog");
 	}
 
 	public static boolean verifyOrganicPetExists() {
@@ -252,6 +273,32 @@ public class ShelterApp {
 				return petName;
 			} else {
 				System.out.println("Pet name does not exist - double-check your spelling.");
+			}
+		}
+	}
+
+	public static String verifyPetChoiceToBringIn() {
+		System.out.println("1 for CAT, 2 for DOG, 3 for ROBOCAT, 4 for ROBODOG?");
+		String petTypeChoice;
+		while (true) {
+			petTypeChoice = input.nextLine();
+			for (String string : choices) {
+				if (string.equalsIgnoreCase(petTypeChoice)) {
+					return petTypeChoice;
+				} 
+			}
+			System.out.println("Invalid choice.");
+		}
+	}
+
+	public static String verifyPetNameDoesNotExist() {
+		String petName;
+		while (true) {
+			petName = input.nextLine();
+			if (shelter.retrievePetInfo(petName) == null) {
+				return petName;
+			} else {
+				System.out.println("Pet name exists - please use a different name.");
 			}
 		}
 	}
