@@ -2,7 +2,7 @@ package pets;
 
 import attributes.RustLevel;
 
-public class RoboPet extends VirtualPet implements Oilable {
+public abstract class RoboPet extends VirtualPet implements Oilable {
 
 	protected RustLevel rustLevel;
 

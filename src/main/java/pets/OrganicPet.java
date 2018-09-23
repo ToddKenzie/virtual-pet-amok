@@ -4,7 +4,7 @@ import attributes.Hunger;
 import attributes.Thirst;
 import attributes.Waste;
 
-public class OrganicPet extends VirtualPet implements Feedable, Drinkable {
+public abstract class OrganicPet extends VirtualPet implements Feedable, Drinkable {
 
 	protected Hunger hunger;
 	protected Thirst thirst;
