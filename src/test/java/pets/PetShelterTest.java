@@ -9,6 +9,8 @@ import java.util.Collection;
 import org.junit.Before;
 import org.junit.Test;
 
+import attributes.LitterBoxWaste;
+
 public class PetShelterTest {
 
 	PetShelter underTest;
@@ -110,16 +112,16 @@ public class PetShelterTest {
 	@Test
 	public void testThatCatWasteIncreasesLitterBoxWasteOnTick0to1() {
 		underTest.tickAll();
-		int litterboxWaste = underTest.getLitterBoxWaste();
-		assertThat(litterboxWaste, is(1));
+		LitterBoxWaste litterboxWaste = underTest.getLitterBoxWaste();
+		assertThat(litterboxWaste.getValue(), is(1));
 	}
 
 	@Test
 	public void testThatCleanLitterBoxWillCleanBoxTo0Waste() {
 		underTest.tickAll(); // create LitterBoxWaste
 		underTest.cleanLitterBox();
-		int litterboxWaste = underTest.getLitterBoxWaste();
-		assertThat(litterboxWaste, is(0));
+		LitterBoxWaste litterboxWaste = underTest.getLitterBoxWaste();
+		assertThat(litterboxWaste.getValue(), is(0));
 	}
 
 	@Test

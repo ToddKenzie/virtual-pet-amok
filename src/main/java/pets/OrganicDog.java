@@ -35,5 +35,9 @@ public class OrganicDog extends OrganicPet implements Walkable, HatesToyMice, Ha
 	public void hatesLasers() {
 		happiness.decreaseValue();
 	}
+	
+	public String toString() {
+		return "Dog\t| " + this.healthLevel + "\t| " + this.happiness + "\t| " + this.hunger + "\t| " + this.thirst + "\t| " + this.name;
+	}
 
 }

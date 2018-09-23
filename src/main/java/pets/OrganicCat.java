@@ -22,5 +22,9 @@ public class OrganicCat extends OrganicPet implements AttractedToLasers, PlaysWi
 	public void playWithToyMice() {
 		happiness.increaseValue();
 	}
+	
+	public String toString() {
+		return "Cat\t| " + this.healthLevel + "\t| " + this.happiness + "\t| " + this.hunger + "\t| " + this.thirst + "\t| " + this.name;
+	}
 
 }

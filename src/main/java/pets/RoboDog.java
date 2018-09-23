@@ -24,6 +24,9 @@ public class RoboDog extends RoboPet implements Walkable, AttractedToLasers, Hat
 		happiness.decreaseValue();
 	}
 
+	public String toString() {
+		return "RoboDog\t| " + this.healthLevel + "\t| " + this.happiness + "\t| " + this.rustLevel + "\t| " + this.name;
+	}
 
 
 }

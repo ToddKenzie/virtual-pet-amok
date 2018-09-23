@@ -15,8 +15,8 @@ public class PetShelter {
 	
 	private LitterBoxWaste litterBoxWaste = new LitterBoxWaste(0);
 	
-	public int getLitterBoxWaste() {
-		return litterBoxWaste.getValue();
+	public LitterBoxWaste getLitterBoxWaste() {
+		return litterBoxWaste;
 	}
 	
 	public Collection<VirtualPet> getAllPets() {

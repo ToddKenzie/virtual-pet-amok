@@ -19,6 +19,9 @@ public class RoboCat extends RoboPet implements AttractedToLasers, PlaysWithToyM
 		happiness.increaseValue();
 	}
 
+	public String toString() {
+		return "RoboCat\t| " + this.healthLevel + "\t| " + this.happiness + "\t| " + this.rustLevel + "\t| " + this.name;
+	}
 
 
 }

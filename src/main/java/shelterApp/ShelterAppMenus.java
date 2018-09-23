@@ -1,6 +1,6 @@
 package shelterApp;
 
-import pets.PetShelter;
+import pets.*;
 
 public class ShelterAppMenus {
 
@@ -10,8 +10,30 @@ public class ShelterAppMenus {
 	}
 	
 	public static String petStatus(PetShelter shelter) {
-		String petStatus = "Placeholder";
-		
+		String petStatus = "\'Real Pets\'\n"
+				+ "Type\t|Health\t| Happy\t|Hunger\t|Thirst\t| Name\n";
+		for (VirtualPet vPet : shelter.getAllPets()) {
+			if (vPet instanceof OrganicPet) {
+				petStatus += vPet + "\n";
+			}
+		}
+		petStatus += "\nRobotic Pets\n"
+				+ "Type\t|Health\t| Happy\t| Rust\t| Name\n";
+		for (VirtualPet vPet : shelter.getAllPets()) {
+			if (vPet instanceof RoboPet) {
+				petStatus += vPet + "\n";
+			}
+		}
+		petStatus += "\nLitterBox status is: " + shelter.getLitterBoxWaste() + "\n";
+		if (verifyOrganicDogExists(shelter)) {
+			petStatus += "Waste Level of the Dog Cages:\n";
+			for (VirtualPet vPet : shelter.getAllPets()) {
+				if (vPet instanceof OrganicDog) {
+					petStatus += vPet.getName() +"'s cage: " + shelter.checkCageWaste(vPet) + "\n";
+				}
+			}
+			petStatus += "\n";	
+		}
 		return petStatus;
 	}
 
@@ -42,6 +64,15 @@ public class ShelterAppMenus {
 	public static String closing() {
 		String closing = "closing placeholder";
 		return closing;
+	}
+	
+	public static boolean verifyOrganicDogExists(PetShelter shelter) {
+		for (VirtualPet vPet : shelter.getAllPets()) {
+			if (vPet instanceof OrganicDog) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
