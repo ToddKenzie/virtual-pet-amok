@@ -1,6 +1,6 @@
 package pets;
 
-public class RoboCat extends RoboPet implements PetCat {
+public class RoboCat extends RoboPet implements AttractedToLasers, PlaysWithToyMice {
 
 	
 	public RoboCat(String name) {
@@ -10,6 +10,11 @@ public class RoboCat extends RoboPet implements PetCat {
 	
 	public void playWithLasers() {
 		happiness.increaseValue();;
+	}
+
+	@Override
+	public void playWithToyMice() {
+		happiness.increaseValue();
 	}
 
 

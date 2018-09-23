@@ -6,10 +6,12 @@ import java.util.Map;
 
 public class PetShelter {
 
-	private LitterBoxWaste litterBoxWaste = new LitterBoxWaste(0);
-	private Map<String, VirtualPet> allPets = new HashMap<>();
-	private Map<VirtualPet, DogCage> dogCages = new HashMap<>();;
+	private PetGenerator petGen = new PetGenerator();
 	
+	private Map<String, VirtualPet> allPets = new HashMap<>();
+	private Map<VirtualPet, DogCage> dogCages = new HashMap<>();
+	
+	private LitterBoxWaste litterBoxWaste = new LitterBoxWaste(0);
 	
 	public int getLitterBoxWaste() {
 		return litterBoxWaste.getValue();
@@ -21,9 +23,26 @@ public class PetShelter {
 	
 	public void takeInPet(VirtualPet pet) {
 		allPets.put(pet.getName(), pet);
-		if(pet instanceof PetDog) {
+		if(pet instanceof OrganicDog) {
 			dogCages.put(pet, new DogCage());
 		}
+	}
+
+	public void takeInPet(String petType, String petName) {
+		VirtualPet newPet = petGen.createPet(petType, petName);
+		takeInPet(newPet);
+	}
+	
+	public void adopt(String petName) {
+		VirtualPet vPet = allPets.get(petName);
+		if (vPet instanceof Walkable) {
+			dogCages.remove(vPet);
+		}
+		allPets.remove(petName);
+	}
+	
+	public VirtualPet retrievePetInfo(String petName) {
+		return allPets.get(petName);
 	}
 
 	public void feedOrganicPets() {
@@ -55,18 +74,33 @@ public class PetShelter {
 
 	public void walkDogs() {
 		for(VirtualPet vPet : this.getAllPets()) {
-			if(vPet instanceof PetDog) {
-				PetDog petToWalk = (PetDog)vPet;
+			if(vPet instanceof Walkable) {
+				Walkable petToWalk = (Walkable)vPet;
 				petToWalk.walk();
 			}
 		}
 	}
 
-	public void playWithLasersWithCats() {
+	public void playLasersWithPets() {
 		for(VirtualPet vPet : this.getAllPets()) {
-			if(vPet instanceof PetCat) {
-				PetCat petToPlayLasersWith = (PetCat)vPet;
+			if(vPet instanceof AttractedToLasers) {
+				AttractedToLasers petToPlayLasersWith = (AttractedToLasers)vPet;
 				petToPlayLasersWith.playWithLasers();
+			} else if (vPet instanceof HatesLasers) {
+				HatesLasers petThatHatesLasers = (HatesLasers)vPet;
+				petThatHatesLasers.hatesLasers();
+			}
+		}
+	}
+
+	public void playWithToyMice() {
+		for(VirtualPet vPet : this.getAllPets()) {
+			if(vPet instanceof PlaysWithToyMice) {
+				PlaysWithToyMice petToPlayMiceWith = (PlaysWithToyMice)vPet;
+				petToPlayMiceWith.playWithToyMice();
+			} else if (vPet instanceof HatesToyMice) {
+				HatesToyMice petThatHatesMice = (HatesToyMice)vPet;
+				petThatHatesMice.hatesToyMice();
 			}
 		}
 	}
@@ -84,7 +118,7 @@ public class PetShelter {
 		for (VirtualPet vPet : this.getAllPets()) {
 			if(vPet instanceof OrganicPet) {
 				OrganicPet orgPet = (OrganicPet)vPet;
-				if(orgPet instanceof PetDog) {
+				if(orgPet instanceof Walkable) {
 					dogCages.get(orgPet).increaseCageWaste(orgPet);
 				} else {
 					litterBoxWaste.increaseValue();
@@ -116,12 +150,12 @@ public class PetShelter {
 		}
 	}
 	
-	public void cleanLitterBox() {
-		litterBoxWaste.decreaseValue();
-	}
-
 	public int checkCageWaste(VirtualPet petOrgDog) {
 		return dogCages.get(petOrgDog).getCageWaste();
+	}
+
+	public void cleanLitterBox() {
+		litterBoxWaste.decreaseValue();
 	}
 
 	public void cleanAllDogCages() {
@@ -130,12 +164,6 @@ public class PetShelter {
 		}
 	}
 
-	public void adopt(String petName) {
-		VirtualPet vPet = allPets.get(petName);
-		if (vPet instanceof PetDog) {
-			dogCages.remove(vPet);
-		}
-		allPets.remove(petName);
-	}
+
 
 }

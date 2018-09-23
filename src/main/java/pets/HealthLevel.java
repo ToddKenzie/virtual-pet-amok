@@ -6,6 +6,9 @@ public class HealthLevel extends Attribute{
 		value = 10;
 	}
 	
+	public void increaseValue() {
+		value = 10;
+	}
 	public void decreaseValue() {
 		value--;
 	}

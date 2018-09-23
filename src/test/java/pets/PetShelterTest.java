@@ -5,7 +5,6 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 
 import java.util.Collection;
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -83,25 +82,29 @@ public class PetShelterTest {
 	}
 	
 	@Test
-	public void giveLasersToOnlyCatsHappiness10to20() {
-		underTest.playWithLasersWithCats();
-		int roboHappy = petRoboCat.getHappiness();
-		int orgHappy = petOrgCat.getHappiness();
-		assertThat(roboHappy, is(20));
-		assertThat(orgHappy, is(20));
+	public void giveLasersToOnlyLasersHappiness10to20DecreaseOrgDog10to7() {
+		underTest.playLasersWithPets();
+		int roboCHappy = petRoboCat.getHappiness();
+		int orgCHappy = petOrgCat.getHappiness();
+		int roboDHappy = petRoboDog.getHappiness();
+		int orgDHappy = petOrgDog.getHappiness();
+		assertThat(roboCHappy, is(20));
+		assertThat(orgCHappy, is(20));
+		assertThat(roboDHappy, is(20));
+		assertThat(orgDHappy, is(7));
 	}
 	
 	@Test
-		public void testTickAllShouldReduceHappy10to7() {
-			underTest.tickAll();
-			int happyOC = petOrgCat.getHappiness();
-			int happyOD = petOrgDog.getHappiness();
-			int happyRC = petRoboCat.getHappiness();
-			int happyRD = petRoboDog.getHappiness();
-			assertThat(happyOC, is(7));
-			assertThat(happyOD, is(7));
-			assertThat(happyRC, is(7));
-			assertThat(happyRD, is(7));
+	public void testTickAllShouldReduceHappy10to7() {
+		underTest.tickAll();
+		int happyOC = petOrgCat.getHappiness();
+		int happyOD = petOrgDog.getHappiness();
+		int happyRC = petRoboCat.getHappiness();
+		int happyRD = petRoboDog.getHappiness();
+		assertThat(happyOC, is(7));
+		assertThat(happyOD, is(7));
+		assertThat(happyRC, is(7));
+		assertThat(happyRD, is(7));
 		}
 
 	@Test
@@ -164,6 +167,26 @@ public class PetShelterTest {
 		underTest.adopt("ME-OW");
 		Collection<VirtualPet> allPets = underTest.getAllPets();
 		assertThat(allPets, containsInAnyOrder(petOrgCat, petOrgDog, petRoboDog));
+	}
+	
+	@Test
+	public void assertThatChaseToyMiceIncreaseCatHappinessfrom10to20DogDecrease10to7() {
+		underTest.playWithToyMice();
+		int roboCHappy = petRoboCat.getHappiness();
+		int orgCHappy = petOrgCat.getHappiness();
+		int roboDHappy = petRoboDog.getHappiness();
+		int orgDHappy = petOrgDog.getHappiness();
+		assertThat(roboCHappy, is(20));
+		assertThat(orgCHappy, is(20));
+		assertThat(roboDHappy, is(7));
+		assertThat(orgDHappy, is(7));
+	}
+	
+	@Test
+	public void assertThatUserCanCreateSpecificPetType() {
+		underTest.takeInPet("Cat", "moo");
+		VirtualPet check = underTest.retrievePetInfo("moo");
+		assertThat(check.getName(), is("moo"));
 	}
 	
 	//Tested method by making cage public.  Returned to private

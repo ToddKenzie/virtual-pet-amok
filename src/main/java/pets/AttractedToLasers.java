@@ -1,6 +1,6 @@
 package pets;
 
-public interface PetCat {
+public interface AttractedToLasers {
 
 	void playWithLasers();
 

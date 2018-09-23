@@ -1,6 +1,6 @@
 package pets;
 
-public class RoboDog extends RoboPet implements PetDog {
+public class RoboDog extends RoboPet implements Walkable, AttractedToLasers, HatesToyMice {
 
 	public RoboDog(String name) {
 		super(name);
@@ -10,6 +10,16 @@ public class RoboDog extends RoboPet implements PetDog {
 	@Override
 	public void walk() {
 		happiness.increaseValue();
+	}
+
+	@Override
+	public void playWithLasers() {
+		happiness.increaseValue();
+	}
+
+	@Override
+	public void hatesToyMice() {
+		happiness.decreaseValue();
 	}
 
 

@@ -1,6 +1,6 @@
 package pets;
 
-public class OrganicPet extends VirtualPet {
+public class OrganicPet extends VirtualPet implements Feedable, Drinkable {
 
 	protected Hunger hunger;
 	protected Thirst thirst;
@@ -23,28 +23,52 @@ public class OrganicPet extends VirtualPet {
 		return waste.getValue();
 	}
 
-	protected void feed() {
+	public void feed() {
 		hunger.decreaseValue();
 	}
 
-	protected void drink() {
+	public void drink() {
 		thirst.decreaseValue();
 	}
 
 	protected void tick() {
-		hunger.increaseValue();
-		thirst.increaseValue();
+		increaseHungerOnTick();
+		increaseThirstOnTick();
 		happiness.decreaseValue();
 		modifyHealthLevel();
 	}
 
 	protected void modifyHealthLevel() {
+		reduceHealthOnHighHunger();
+		reduceHealthOnHighThirst();
+	}
+
+
+	@Override
+	public void increaseHungerOnTick() {
+		hunger.increaseValue();
+	}
+
+	@Override
+	public void increaseThirstOnTick() {
+		thirst.increaseValue();
+	}
+
+	@Override
+	public void reduceHealthOnHighHunger() {
 		if (hunger.getValue() >= 40) {
 			healthLevel.decreaseValue();
 		}
+	}
+
+	@Override
+	public void reduceHealthOnHighThirst() {
 		if (thirst.getValue() >= 40) {
 			healthLevel.decreaseValue();
 		}
 	}
+
+
+
 
 }

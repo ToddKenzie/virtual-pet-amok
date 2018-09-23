@@ -1,6 +1,6 @@
 package pets;
 
-public class OrganicDog extends OrganicPet implements PetDog{
+public class OrganicDog extends OrganicPet implements Walkable, HatesToyMice, HatesLasers {
 
 	public OrganicDog(String name) {
 		super(name);
@@ -13,14 +13,23 @@ public class OrganicDog extends OrganicPet implements PetDog{
 		happiness.increaseValue();
 		waste.decreaseValue();
 	}
-	
+
 	protected void tick() {
-		hunger.increaseValue();
-		thirst.increaseValue();
+		increaseHungerOnTick();
+		increaseThirstOnTick();
 		waste.increaseValue();
 		happiness.decreaseValue();
 		modifyHealthLevel();
 	}
 
+	@Override
+	public void hatesToyMice() {
+		happiness.decreaseValue();
+	}
+
+	@Override
+	public void hatesLasers() {
+		happiness.decreaseValue();
+	}
 
 }

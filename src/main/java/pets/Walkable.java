@@ -1,6 +1,6 @@
 package pets;
 
-public interface PetDog {
+public interface Walkable {
 
 	void walk();
 

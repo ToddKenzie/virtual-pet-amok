@@ -1,6 +1,6 @@
 package pets;
 
-public class RoboPet extends VirtualPet {
+public class RoboPet extends VirtualPet implements Oilable {
 
 	protected RustLevel rustLevel;
 
@@ -12,19 +12,29 @@ public class RoboPet extends VirtualPet {
 		return rustLevel.getValue();
 	}
 
-	protected void oil() {
+	public void oil() {
 		rustLevel.decreaseValue();
 	}
 
 	@Override
 	protected void tick() {
-		rustLevel.increaseValue();
+		increaseRustLevelOnTick();
 		happiness.decreaseValue();
 		modifyHealthLevel();
 	}
 
 	@Override
 	protected void modifyHealthLevel() {
+		decreaseHealthOnHighRustLevel();
+	}
+
+	@Override
+	public void increaseRustLevelOnTick() {
+		rustLevel.increaseValue();
+	}
+
+	@Override
+	public void decreaseHealthOnHighRustLevel() {
 		if (rustLevel.getValue() >= 40) {
 			healthLevel.decreaseValue();
 		}
