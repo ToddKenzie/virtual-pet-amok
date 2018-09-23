@@ -8,8 +8,8 @@ public class OrganicCat extends OrganicPet implements AttractedToLasers, PlaysWi
 
 	public OrganicCat(String name) {
 		super(name);
-		this.hunger = new Hunger(25);
-		this.thirst = new Thirst(25);
+		this.hunger = new Hunger(6);
+		this.thirst = new Thirst(6);
 		this.waste = new Waste(1);
 
 	}

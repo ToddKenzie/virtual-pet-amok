@@ -6,7 +6,7 @@ public class RoboDog extends RoboPet implements Walkable, AttractedToLasers, Hat
 
 	public RoboDog(String name) {
 		super(name);
-		this.rustLevel = new RustLevel(30);
+		this.rustLevel = new RustLevel(8);
 	}
 
 	@Override

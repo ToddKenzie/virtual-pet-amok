@@ -28,6 +28,7 @@ public abstract class RoboPet extends VirtualPet implements Oilable {
 	@Override
 	protected void modifyHealthLevel() {
 		decreaseHealthOnHighRustLevel();
+		reduceHealthOnLowHappiness();
 	}
 
 	@Override
@@ -37,7 +38,14 @@ public abstract class RoboPet extends VirtualPet implements Oilable {
 
 	@Override
 	public void decreaseHealthOnHighRustLevel() {
-		if (rustLevel.getValue() >= 40) {
+		if (rustLevel.getValue() >= 12) {
+			healthLevel.decreaseValue();
+		}
+	}
+	
+	@Override
+	protected void reduceHealthOnLowHappiness() {
+		if (happiness.getValue() == 0) {
 			healthLevel.decreaseValue();
 		}
 	}

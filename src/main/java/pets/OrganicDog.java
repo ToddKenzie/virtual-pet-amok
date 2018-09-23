@@ -8,8 +8,8 @@ public class OrganicDog extends OrganicPet implements Walkable, HatesToyMice, Ha
 
 	public OrganicDog(String name) {
 		super(name);
-		this.hunger = new Hunger(30);
-		this.thirst = new Thirst(30);
+		this.hunger = new Hunger(8);
+		this.thirst = new Thirst(8);
 		this.waste = new Waste(2);
 	}
 

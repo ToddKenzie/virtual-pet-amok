@@ -7,7 +7,7 @@ public class RoboCat extends RoboPet implements AttractedToLasers, PlaysWithToyM
 	
 	public RoboCat(String name) {
 		super(name);
-		this.rustLevel = new RustLevel(25);
+		this.rustLevel = new RustLevel(6);
 	}
 	
 	public void playWithLasers() {

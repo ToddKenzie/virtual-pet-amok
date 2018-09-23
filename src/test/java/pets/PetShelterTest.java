@@ -40,71 +40,71 @@ public class PetShelterTest {
 	}
 
 	@Test
-	public void feedOnlyOrganicPetsOC25to15OD30to20() {
+	public void feedOnlyOrganicPetsOC6to2OD8to4() {
 		underTest.feedOrganicPets();
 		OrganicCat catCheck = (OrganicCat) petOrgCat;
 		int hungerOC = catCheck.getHunger();
 		OrganicDog dogCheck = (OrganicDog) petOrgDog;
 		int hungerOD = dogCheck.getHunger();
-		assertThat(hungerOC, is(15));
-		assertThat(hungerOD, is(20));
+		assertThat(hungerOC, is(2));
+		assertThat(hungerOD, is(4));
 	}
 
 	@Test
-	public void waterOnlyOrganicPetsOC25to15OD30to20() {
+	public void waterOnlyOrganicPetsOC6to2OD8to4() {
 		underTest.giveWaterToOrganicPets();
 		OrganicCat catCheck = (OrganicCat) petOrgCat;
 		int thirstOC = catCheck.getThirst();
 		OrganicDog dogCheck = (OrganicDog) petOrgDog;
 		int thirstOD = dogCheck.getThirst();
-		assertThat(thirstOC, is(15));
-		assertThat(thirstOD, is(20));
+		assertThat(thirstOC, is(2));
+		assertThat(thirstOD, is(4));
 	}
 
 	@Test
-	public void giveOilToOnlyRoboticPetsRC25to15RD30to20() {
+	public void giveOilToOnlyRoboticPetsRC6to2RD8to4() {
 		underTest.oilRoboticPets();
 		RoboCat catCheck = (RoboCat) petRoboCat;
 		int rustRC = catCheck.getRustLevel();
 		RoboDog dogCheck = (RoboDog) petRoboDog;
 		int rustRD = dogCheck.getRustLevel();
-		assertThat(rustRC, is(15));
-		assertThat(rustRD, is(20));
+		assertThat(rustRC, is(2));
+		assertThat(rustRD, is(4));
 	}
 
 	@Test
-	public void giveWalkToOnlyDogsHappiness10to20() {
+	public void giveWalkToOnlyDogsHappiness10to14() {
 		underTest.walkDogs();
 		int roboHappy = petRoboDog.getHappiness();
 		int orgHappy = petOrgDog.getHappiness();
-		assertThat(roboHappy, is(20));
-		assertThat(orgHappy, is(20));
+		assertThat(roboHappy, is(14));
+		assertThat(orgHappy, is(14));
 	}
 
 	@Test
-	public void giveLasersToOnlyLasersHappiness10to20DecreaseOrgDog10to7() {
+	public void giveLasersToOnlyLasersHappiness10to14DecreaseOrgDog10to9() {
 		underTest.playLasersWithPets();
 		int roboCHappy = petRoboCat.getHappiness();
 		int orgCHappy = petOrgCat.getHappiness();
 		int roboDHappy = petRoboDog.getHappiness();
 		int orgDHappy = petOrgDog.getHappiness();
-		assertThat(roboCHappy, is(20));
-		assertThat(orgCHappy, is(20));
-		assertThat(roboDHappy, is(20));
-		assertThat(orgDHappy, is(7));
+		assertThat(roboCHappy, is(14));
+		assertThat(orgCHappy, is(14));
+		assertThat(roboDHappy, is(14));
+		assertThat(orgDHappy, is(9));
 	}
 
 	@Test
-	public void testTickAllShouldReduceHappy10to7() {
+	public void testTickAllShouldReduceHappy10to9() {
 		underTest.tickAll();
 		int happyOC = petOrgCat.getHappiness();
 		int happyOD = petOrgDog.getHappiness();
 		int happyRC = petRoboCat.getHappiness();
 		int happyRD = petRoboDog.getHappiness();
-		assertThat(happyOC, is(7));
-		assertThat(happyOD, is(7));
-		assertThat(happyRC, is(7));
-		assertThat(happyRD, is(7));
+		assertThat(happyOC, is(9));
+		assertThat(happyOD, is(9));
+		assertThat(happyRC, is(9));
+		assertThat(happyRD, is(9));
 	}
 
 	@Test
@@ -170,16 +170,16 @@ public class PetShelterTest {
 	}
 
 	@Test
-	public void assertThatChaseToyMiceIncreaseCatHappinessfrom10to20DogDecrease10to7() {
+	public void assertThatChaseToyMiceIncreaseCatHappinessfrom10to14DogDecrease10to9() {
 		underTest.playWithToyMice();
 		int roboCHappy = petRoboCat.getHappiness();
 		int orgCHappy = petOrgCat.getHappiness();
 		int roboDHappy = petRoboDog.getHappiness();
 		int orgDHappy = petOrgDog.getHappiness();
-		assertThat(roboCHappy, is(20));
-		assertThat(orgCHappy, is(20));
-		assertThat(roboDHappy, is(7));
-		assertThat(orgDHappy, is(7));
+		assertThat(roboCHappy, is(14));
+		assertThat(orgCHappy, is(14));
+		assertThat(roboDHappy, is(9));
+		assertThat(orgDHappy, is(9));
 	}
 
 	@Test
@@ -215,6 +215,46 @@ public class PetShelterTest {
 		underTest.changeBatteries("WO-OF");
 		int health = petRoboDog.getHealthLevel();
 		assertThat(health, is(10));
+	}
+	
+	@Test
+	public void assertHappiness0ReducesHealth10to9OnTick() {
+		underTest.tickAll();
+		underTest.cleanAllDogCages();
+		underTest.tickAll();
+		underTest.cleanAllDogCages();
+		underTest.oilRoboticPets();
+		underTest.feedOrganicPets();
+		underTest.giveWaterToOrganicPets();
+		underTest.tickAll();
+	
+		underTest.cleanAllDogCages();
+		underTest.cleanLitterBox();
+		underTest.tickAll();
+		underTest.cleanAllDogCages();
+		underTest.tickAll();
+	
+		underTest.oilRoboticPets();
+		underTest.feedOrganicPets();
+		underTest.giveWaterToOrganicPets();
+		underTest.cleanAllDogCages();
+		underTest.tickAll();
+		underTest.cleanAllDogCages();
+		underTest.tickAll();
+		underTest.cleanLitterBox();
+		underTest.tickAll();
+		int happyOD = petOrgDog.getHealthLevel();
+		underTest.tickAll();
+		underTest.tickAll();
+
+		int happyOC = petOrgCat.getHealthLevel();
+		assertThat(happyOC, is(9));
+		assertThat(happyOD, is(9));
+		
+		int happyRC = petRoboCat.getHealthLevel();
+		int happyRD = petRoboDog.getHealthLevel();
+		assertThat(happyRC, is(9));
+		assertThat(happyRD, is(9));
 	}
 	
 	// Tested method by making cage public. Returned to private

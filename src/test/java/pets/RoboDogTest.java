@@ -16,35 +16,35 @@ public class RoboDogTest {
 	}
 	
 	@Test
-	public void verifyThatOiledReducesRusty30to20() {
+	public void verifyThatOiledReducesRusty8to4() {
 		underTest.oil();
 		int rust = underTest.getRustLevel();
-		assertThat(rust, is(20));
+		assertThat(rust, is(4));
 	}
 	
 	@Test
-	public void verifyThatWalkIncreasesHappiness10to20() {
+	public void verifyThatWalkIncreasesHappiness10to14() {
 		underTest.walk();
 		int happiness = underTest.getHappiness();
-		assertThat(happiness, is(20));
+		assertThat(happiness, is(14));
 	}
 	
 	@Test
-	public void verifyThatTickIncreasesRustLevelfrom30to33() {
+	public void verifyThatTickIncreasesRustLevelfrom8to9() {
 		underTest.tick();
 		int rust = underTest.getRustLevel();
-		assertThat(rust, is(33));
+		assertThat(rust, is(9));
 	}
 	
 	@Test
-	public void verifyTickReducesHappinessFrom10to7() {
+	public void verifyTickReducesHappinessFrom10to9() {
 		underTest.tick();
 		int happiness = underTest.getHappiness();
-		assertThat(happiness, is(7));
+		assertThat(happiness, is(9));
 	}
 	
 	@Test
-	public void verifyTickReducesHealthFrom10to9IfRustEQorGreater40() {
+	public void verifyTickReducesHealthFrom10to9IfRustEQorGreater12() {
 		underTest.tick();
 		underTest.tick();
 		underTest.tick();

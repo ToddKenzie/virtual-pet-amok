@@ -45,6 +45,7 @@ public abstract class OrganicPet extends VirtualPet implements Feedable, Drinkab
 	protected void modifyHealthLevel() {
 		reduceHealthOnHighHunger();
 		reduceHealthOnHighThirst();
+		reduceHealthOnLowHappiness();
 	}
 
 
@@ -60,16 +61,24 @@ public abstract class OrganicPet extends VirtualPet implements Feedable, Drinkab
 
 	@Override
 	public void reduceHealthOnHighHunger() {
-		if (hunger.getValue() >= 40) {
+		if (hunger.getValue() >= 12) {
 			healthLevel.decreaseValue();
 		}
 	}
 
 	@Override
 	public void reduceHealthOnHighThirst() {
-		if (thirst.getValue() >= 40) {
+		if (thirst.getValue() >= 12) {
 			healthLevel.decreaseValue();
 		}
+	}
+	
+	@Override
+	protected void reduceHealthOnLowHappiness() {
+		if (happiness.getValue() == 0) {
+			healthLevel.decreaseValue();
+		}
+			
 	}
 
 

@@ -3,14 +3,14 @@ package attributes;
 public abstract class MaintenanceStats extends Attribute {
 
 	public void increaseValue() {
-		value += 3;
+		value += 1;
 	}
 	
 	public void decreaseValue() {
-		if (value - 10 < 0) {
+		if (value - 4 < 0) {
 			value = 0;
 		} else {
-			value -= 10;
+			value -= 4;
 		}
 	}
 }

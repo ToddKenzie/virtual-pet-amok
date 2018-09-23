@@ -16,24 +16,24 @@ public class OrganicDogTest {
 	}
 	
 	@Test
-	public void verifyAnOrganicDogCanBeFed30to20() {
+	public void verifyAnOrganicDogCanBeFed8to7() {
 		underTest.feed();
 		int hunger = underTest.getHunger();
-		assertThat(hunger, is(20));
+		assertThat(hunger, is(4));
 	}
 	
 	@Test
-	public void verifyAnOrganicDogCanDrink30to20() {
+	public void verifyAnOrganicDogCanDrink8to4() {
 		underTest.drink();
 		int thirst = underTest.getThirst();
-		assertThat(thirst, is(20));
+		assertThat(thirst, is(4));
 	}
 	
 	@Test
-	public void verifyWalkIncreasesHappiness10to20() {
+	public void verifyWalkIncreasesHappiness10to14() {
 		underTest.walk();
 		int happiness = underTest.getHappiness();
-		assertThat(happiness, is(20));
+		assertThat(happiness, is(14));
 	}
 	
 	@Test
@@ -44,18 +44,18 @@ public class OrganicDogTest {
 	}
 	
 	@Test
-	public void verifyTickIncreasesHunger30to33Thirst30to33Waste2to3() {
+	public void verifyTickIncreasesHunger8to9Thirst8to9Waste2to3() {
 		underTest.tick();
 		int hunger = underTest.getHunger();
 		int thirst = underTest.getThirst();
 		int waste = underTest.getWaste();
-		assertThat(hunger, is(33));
-		assertThat(thirst, is(33));
+		assertThat(hunger, is(9));
+		assertThat(thirst, is(9));
 		assertThat(waste, is(3));
 	}
 	
 	@Test
-	public void verifyHealthDecreasesFrom10to9IfHungerEQorExceed40() {
+	public void verifyHealthDecreasesFrom10to9IfHungerEQorExceed12() {
 		underTest.drink();  //prevent water condition match
 		underTest.tick();
 		underTest.tick();
@@ -66,7 +66,7 @@ public class OrganicDogTest {
 	}
 	
 	@Test
-	public void verifyHealthDecreasesFrom10to9IfThirstEQorExceed40() {
+	public void verifyHealthDecreasesFrom10to9IfThirstEQorExceed12() {
 		underTest.feed();  //prevent food condition match
 		underTest.tick();
 		underTest.tick();
@@ -77,10 +77,10 @@ public class OrganicDogTest {
 	}
 	
 	@Test
-	public void verifyTickReducesHappinessFrom10to7() {
+	public void verifyTickReducesHappinessFrom10to9() {
 		underTest.tick();
 		int happiness = underTest.getHappiness();
-		assertThat(happiness, is(7));
+		assertThat(happiness, is(9));
 	}
 
 }

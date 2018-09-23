@@ -114,7 +114,6 @@ public class PetShelter {
 		increaseWastePiles();
 		reducePetHealthFromWaste();
 	}
-	
 
 	public void increaseWastePiles() {
 		for (VirtualPet vPet : this.getAllPets()) {

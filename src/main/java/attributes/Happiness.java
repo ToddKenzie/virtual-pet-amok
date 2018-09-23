@@ -7,15 +7,16 @@ public class Happiness extends Attribute{
 	}
 	
 	public void increaseValue() {
-		value += 10;
+		value += 4;
 	}
 	
 	public void decreaseValue() {
-		if (value - 3 < 0) {
+		if (value - 1 < 0) {
 			value = 0;
 		} else {
-			value -= 3;
+			value -= 1;
 		}
 	}
+	
 
 }

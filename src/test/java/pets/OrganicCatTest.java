@@ -17,64 +17,66 @@ public class OrganicCatTest {
 	}
 	
 	@Test
-	public void verifyFeedReducesHungerFrom25to15() {
+	public void verifyFeedReducesHungerFrom6to2() {
 		underTest.feed();
 		int hunger = underTest.getHunger();
-		assertThat(hunger, is(15));
+		assertThat(hunger, is(2));
 	}
 	
 	@Test
-	public void verifyDrinkReducesThirstFrom25to15() {
+	public void verifyDrinkReducesThirstFrom6to2() {
 		underTest.drink();
 		int thirst = underTest.getThirst();
-		assertThat(thirst, is(15));
+		assertThat(thirst, is(2));
 	}
 	
 	@Test
-	public void verifyPlayWithLasersIncreasesHappinessFrom10to20() {
+	public void verifyPlayWithLasersIncreasesHappinessFrom10to14() {
 		underTest.playWithLasers();
 		int happiness = underTest.getHappiness();
-		assertThat(happiness, is(20));
+		assertThat(happiness, is(14));
 	}
 	
 	@Test
-	public void verifyTickIncreasesHunger25to28Thirst25to28() {
+	public void verifyTickIncreasesHunger6to7Thirst6to7() {
 		underTest.tick();
 		int hunger = underTest.getHunger();
 		int thirst = underTest.getThirst();
-		assertThat(hunger, is(28));
-		assertThat(thirst, is(28));
+		assertThat(hunger, is(7));
+		assertThat(thirst, is(7));
 	}
 	
 	@Test
-	public void verifyHealthDecreasesFrom10to9OnTickIfHungerEQorGreaterThan40() {
+	public void verifyHealthDecreasesFrom10to9OnTickIfHungerEQorGreaterThan12() {
 		underTest.drink(); //prevent double hit on healthCheck
 		underTest.tick();
 		underTest.tick();
 		underTest.tick();
 		underTest.tick();
 		underTest.tick();
+		underTest.tick();
 		int healthLevel = underTest.getHealthLevel();
 		assertThat(healthLevel, is(9));
 	}
 	
 	@Test
-	public void verifyHealthDecreasesFrom10to9OnTickIfThirstEQorGreaterThan40() {
+	public void verifyHealthDecreasesFrom10to9OnTickIfThirstEQorGreaterThan12() {
 		underTest.feed(); //prevent double hit on healthCheck
 		underTest.tick();
 		underTest.tick();
 		underTest.tick();
 		underTest.tick();
 		underTest.tick();
+		underTest.tick();
 		int healthLevel = underTest.getHealthLevel();
 		assertThat(healthLevel, is(9));
 	}
 	
 	@Test
-	public void verifyTickReducesHappinessFrom10to7() {
+	public void verifyTickReducesHappinessFrom10to9() {
 		underTest.tick();
 		int happiness = underTest.getHappiness();
-		assertThat(happiness, is(7));
+		assertThat(happiness, is(9));
 	}
 	
 	

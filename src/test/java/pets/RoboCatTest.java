@@ -16,31 +16,31 @@ public class RoboCatTest {
 	}
 	
 	@Test
-	public void verifyOilRedcuesRustFrom25to15() {
+	public void verifyOilRedcuesRustFrom6to2() {
 		underTest.oil();
 		int rust = underTest.getRustLevel();
-		assertThat(rust, is(15));
+		assertThat(rust, is(2));
 	}
 	
 	@Test
-	public void verifyLasersIncreaseHappinessfrom10to20() {
+	public void verifyLasersIncreaseHappinessfrom10to14() {
 		underTest.playWithLasers();
 		int happiness = underTest.getHappiness();
-		assertThat(happiness, is(20));
+		assertThat(happiness, is(14));
 	}
 	
 	@Test
-	public void verifyTickIncreasesRustFrom25to28() {
+	public void verifyTickIncreasesRustFrom6to7() {
 		underTest.tick();
 		int rust = underTest.getRustLevel();
-		assertThat(rust, is(28));
+		assertThat(rust, is(7));
 	}
 	
 	@Test
-	public void verifyTickReducesHappinessFrom10to7() {
+	public void verifyTickReducesHappinessFrom10to9() {
 		underTest.tick();
 		int happiness = underTest.getHappiness();
-		assertThat(happiness, is(7));
+		assertThat(happiness, is(9));
 	}
 	
 	@Test
@@ -50,6 +50,8 @@ public class RoboCatTest {
 		underTest.tick();
 		underTest.tick();
 		underTest.tick();
+		underTest.tick();
+
 		int health = underTest.getHealthLevel();
 		assertThat(health, is(9));
 	}

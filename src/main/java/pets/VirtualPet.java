@@ -39,6 +39,8 @@ public abstract class VirtualPet {
 	protected void increaseHealth() {
 		healthLevel.increaseValue();
 	}
+	
+	protected abstract void reduceHealthOnLowHappiness();
 
 
 }
