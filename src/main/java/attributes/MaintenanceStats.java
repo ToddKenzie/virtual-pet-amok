@@ -13,4 +13,23 @@ public abstract class MaintenanceStats extends Attribute {
 			value -= 4;
 		}
 	}
+	
+	public String toString() {
+		String publish;
+		if (value <= 2) {
+			publish = ":D";
+		} else if (value <= 4) {
+			publish = ":)";
+		} else if (value <= 6) {
+			publish = ":|";
+		} else if (value <= 8) {
+			publish = ":(";
+		} else if (value <=10) {
+			publish = ":`(";
+		} else {
+			publish = "X(";
+		}
+		return publish;
+	}
+	
 }

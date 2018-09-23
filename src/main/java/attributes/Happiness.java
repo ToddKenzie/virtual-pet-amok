@@ -18,5 +18,21 @@ public class Happiness extends Attribute{
 		}
 	}
 	
-
+	public String toString() {
+		String publish;
+		if (value <= 2) {
+			publish = "X(";
+		} else if (value <= 4) {
+			publish = ":`(";
+		} else if (value <= 6) {
+			publish = ":(";
+		} else if (value <= 8) {
+			publish = ":|";
+		} else if (value <= 10) {
+			publish = ":)";
+		} else {
+			publish = ":D";
+		}
+		return publish;
+	}
 }

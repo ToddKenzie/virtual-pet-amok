@@ -50,7 +50,10 @@ public class ShelterApp {
 		} else if (userMainMenuInput.equalsIgnoreCase("W")) {
 			if (verifyWalkablePetExists()) {
 				shelter.walkDogs();
-				System.out.println("You walk the dogs.");
+				System.out.println("You walk the dogs.  They all seem to be happier");
+				if (verifyOrganicDogExists()) {
+					System.out.println("The real dogs take some extra time doing their business in the yard.  At least it's not in the cages.");
+				}
 			} else {
 				System.out.println("No pets here liked to be walked.  You may think that, but you're wrong.");
 			}
@@ -175,6 +178,15 @@ public class ShelterApp {
 	public static boolean verifyWalkablePetExists() {
 		for (VirtualPet vPet : shelter.getAllPets()) {
 			if (vPet instanceof Walkable) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean verifyOrganicDogExists() {
+		for (VirtualPet vPet : shelter.getAllPets()) {
+			if (vPet instanceof OrganicDog) {
 				return true;
 			}
 		}

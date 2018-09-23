@@ -12,4 +12,22 @@ public class HealthLevel extends Attribute{
 	public void decreaseValue() {
 		value--;
 	}
+	
+	public String toString() {
+		String publish;
+		if (value <= 1) {
+			publish = "X(";
+		} else if (value <= 3) {
+			publish = ":`(";
+		} else if (value <= 5) {
+			publish = ":(";
+		} else if (value <= 7) {
+			publish = ":|";
+		} else if (value <= 9) {
+			publish = ":)";
+		} else {
+			publish = ":D";
+		}
+		return publish;
+	}
 }
