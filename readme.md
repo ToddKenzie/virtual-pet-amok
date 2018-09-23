@@ -14,15 +14,7 @@ Cats hang out in a communal area and use a common litter box. Don’t even bothe
 
 We’re introducing a health attribute for pets. Organic pets have their health decreased by unclean circumstances, and by thirst or hunger growing too high. Robotic pets only lose health if they’re not oiled regularly. All pets lose health if their happiness drops too low.
 
-### Setup
-
-You can copy your code from the previous project to use as a starter, or start from scratch.
-
-Create a Java project in Eclipse named virtual-pets-amok.
-Create a README.md file in your project folder to describe what you’ve done with your project. No fancy formatting is necessary. Just separate paragraphs with an empty line. (If you’d like to learn more about Markdown formatting, check out the Github Markdown Guide.)
-Create a GitHub repository also named virtual-pets-amok and set it up so that you can push your code there from your Eclipse project. Do this now. It’s the least fun part, so just get it out of the way.
-
-Required Tasks
+### Required Tasks
 
 **General**
 
@@ -37,6 +29,7 @@ Required Tasks
 * Assign appropriate visibility modifiers to methods only used internally by a class or within a class hierarchy.
 
 **VirtualPet class and related subclasses/interfaces**
+
 In addition to the last project’s requirements:
 
 * create a model that allows for dogs and cats, either of which may be robotic
@@ -48,10 +41,11 @@ In addition to the last project’s requirements:
 	* feeding/watering robotic pets
 	* oiling organic pets
 * modify the tick method to return a value indicating the amount of waste a pet creates, which should contribute to either (optionally, create accessor methods to retrieve these values instead):
-* amount of waste in the litter box
-* amount of waste in an individual dog cage
+	* amount of waste in the litter box
+	* amount of waste in an individual dog cage
 
 **VirtualPetShelter class**
+
 In addition to the last project’s requirements:
 
 * introduce methods that allow for:
@@ -60,8 +54,8 @@ In addition to the last project’s requirements:
 * emptying the litterbox
 * modify existing methods to only feed/water pets that are not robotic
 
-
 **VirtualPetShelterApp class**
+
 In addition to the last project’s requirements:
 
 * add options to:
@@ -70,27 +64,8 @@ In addition to the last project’s requirements:
 * clean the shelter litterbox
 * oil all robotic pets
 
-**Tips**
+### Minor Additions
 
-* Remember: don’t get caught up in the user interface at first. Focus on shelter/pet behavior. Try to get one thing working at a time.
-* Try creating tests to verify pet behavior, limiting your immediate goal to something small.
-
-**Stretch Tasks**
-
-* Allow for other types of pets. Are they caged? What maintenance do they require?
-* Allow an option for giving treats to pets. What sorts of treats do different pets like?
-* introduce a Cage class for each dog, where cleanliness is tracked, keying these on the dog to which each is assigned (to use a VirtualPet as a key in a HashMap, you should implement hashCode and equals)
-* Herd your cats.
-
-### Rubric
-
-* oilAllRobots()	10
-* cleanAllCages()	10
-* emptyLitterBox()	10
-* has interfaces for necessary functionality	10
-* instance variable for health	10
-* modify tick() - amount of waste in the litter box and amount of waste in an individual dog cage	10
-* encapsulate all instance variables	10
-* proper modifiers for instance variables	10
-* adequate unit tests to drive production	10
-* style/formatting/code quality	10
+* Added Using Laser Pointers to play with all Robotic Pets and Cats
+* Added Using Toy Mice to Play with All Cats (and rile up all dogs)
+* App will let you choose options that no pets exist for, but will let you know on option commit that there's no point to doing that

@@ -43,7 +43,7 @@ public class ShelterApp {
 					System.out.println("\nYou lubricate the robots.");
 				} else {
 					System.out.println(
-							"\nThere are no pets here who like oil.  You'd have to do a lot of clean-up and PETA would likely be called.");
+							"\nThere are no pets here who like oil.  You'd have to do a lot of clean-up and PETA may be called.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("W")) {
@@ -68,7 +68,7 @@ public class ShelterApp {
 								.println("The real dogs just get riled up with all the other animals running around.");
 					}
 				} else {
-					System.out.println("\nYou'd only rile up the pets in the shelter.  I wouldn't advise it.");
+					System.out.println("\nYou entertain yourself with the laser pointer.  Don't point it at your eyes.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("M")) {
@@ -79,15 +79,19 @@ public class ShelterApp {
 						System.out.println("\nThe dogs get aggrivates with all the cats running around.");
 					}
 				} else {
-					System.out.println("\nThe dogs just stare at you.");
+					System.out.println("\nNothing here likes the mice.  Except for maybe you.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("P")) {
-				System.out.println("\nWhich pet would you like to play with?");
-				String petToPlayWith = verifyPetNameExists();
-				shelter.playWithOnePet(petToPlayWith);
-				System.out.println("You play with " + petToPlayWith
-						+ ".  The rest of the pets stare at you.\nPerhaps playing with only one isn't the best option.");
+				if (shelter.getAllPets() != null) {
+					System.out.println("\nWhich pet would you like to play with?");
+					String petToPlayWith = verifyPetNameExists();
+					shelter.playWithOnePet(petToPlayWith);
+					System.out.println("You play with " + petToPlayWith
+							+ ".  The rest of the pets stare at you.\nPerhaps playing with only one isn't the best option.");
+				} else {
+					System.out.println("\nYou can play with yourself, I guess...");
+				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("CB")) {
 				shelter.cleanLitterBox();
@@ -118,7 +122,7 @@ public class ShelterApp {
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("T")) {
-				System.out.println("Which type of pet will you bring into the shelter?");
+				System.out.println("\nWhich type of pet will you bring into the shelter?");
 				String petType = verifyPetChoiceToBringIn();
 				System.out.println("What will the pet's name be?");
 				String petName = verifyPetNameDoesNotExist();
@@ -126,10 +130,14 @@ public class ShelterApp {
 				System.out.println("You brought in " + petName + ".");
 
 			} else if (userMainMenuInput.equalsIgnoreCase("A")) {
-				System.out.println("\nWhich pet will you have adopted?");
-				String petToAdopt = verifyPetNameExists();
-				shelter.adopt(petToAdopt);
-				System.out.println(petToAdopt + " has been adopted!");
+				if (shelter.getAllPets() != null) {
+					System.out.println("\nWhich pet will you have adopted?");
+					String petToAdopt = verifyPetNameExists();
+					shelter.adopt(petToAdopt);
+					System.out.println(petToAdopt + " has been adopted!");
+				} else {
+					System.out.println("\nThere's no pets in the shelter to be adopted!");
+				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("Q")) {
 				break;

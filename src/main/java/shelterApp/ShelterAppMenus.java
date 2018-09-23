@@ -5,7 +5,7 @@ import pets.*;
 public class ShelterAppMenus {
 
 	public static String welcome() {
-		String welcome = "welcome placeholder";
+		String welcome = "Welcome to the Complex Happy Home Shelter.  You've got your hands full!";
 		return welcome;
 	}
 	
@@ -61,13 +61,8 @@ public class ShelterAppMenus {
 		return mainMenu;
 	}
 
-	public static String takeInNewPetMenu() {
-		String takeinPetMenu = "take in pet placeholder";
-		return takeinPetMenu;
-	}
-
 	public static String closing() {
-		String closing = "closing placeholder";
+		String closing = "Thanks for participating.  I hope your time was enjoyable.";
 		return closing;
 	}
 	
