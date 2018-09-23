@@ -1,5 +1,8 @@
 package pets;
 
+import attributes.Happiness;
+import attributes.HealthLevel;
+
 public abstract class VirtualPet {
 
 	protected String name;
@@ -29,8 +32,12 @@ public abstract class VirtualPet {
 
 	protected abstract void modifyHealthLevel();
 
-	public void reduceHealth() {
-		healthLevel.decreaseValue();;
+	protected void reduceHealth() {
+		healthLevel.decreaseValue();
+	}
+	
+	protected void increaseHealth() {
+		healthLevel.increaseValue();
 	}
 
 

@@ -10,13 +10,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PetShelterTest {
-	
+
 	PetShelter underTest;
 	VirtualPet petOrgCat;
 	VirtualPet petOrgDog;
 	VirtualPet petRoboCat;
 	VirtualPet petRoboDog;
-	
+
 	@Before
 	public void setUp() {
 		underTest = new PetShelter();
@@ -29,7 +29,7 @@ public class PetShelterTest {
 		underTest.takeInPet(petRoboCat);
 		underTest.takeInPet(petRoboDog);
 	}
-	
+
 	@Test
 	public void verify2PetsAreBroughtIntoShelter() {
 		PetShelter underTest2 = new PetShelter();
@@ -38,13 +38,13 @@ public class PetShelterTest {
 		Collection<VirtualPet> allPets = underTest2.getAllPets();
 		assertThat(allPets.size(), is(2));
 	}
-	
+
 	@Test
 	public void feedOnlyOrganicPetsOC25to15OD30to20() {
 		underTest.feedOrganicPets();
-		OrganicCat catCheck = (OrganicCat)petOrgCat;
+		OrganicCat catCheck = (OrganicCat) petOrgCat;
 		int hungerOC = catCheck.getHunger();
-		OrganicDog dogCheck = (OrganicDog)petOrgDog;
+		OrganicDog dogCheck = (OrganicDog) petOrgDog;
 		int hungerOD = dogCheck.getHunger();
 		assertThat(hungerOC, is(15));
 		assertThat(hungerOD, is(20));
@@ -53,9 +53,9 @@ public class PetShelterTest {
 	@Test
 	public void waterOnlyOrganicPetsOC25to15OD30to20() {
 		underTest.giveWaterToOrganicPets();
-		OrganicCat catCheck = (OrganicCat)petOrgCat;
+		OrganicCat catCheck = (OrganicCat) petOrgCat;
 		int thirstOC = catCheck.getThirst();
-		OrganicDog dogCheck = (OrganicDog)petOrgDog;
+		OrganicDog dogCheck = (OrganicDog) petOrgDog;
 		int thirstOD = dogCheck.getThirst();
 		assertThat(thirstOC, is(15));
 		assertThat(thirstOD, is(20));
@@ -64,9 +64,9 @@ public class PetShelterTest {
 	@Test
 	public void giveOilToOnlyRoboticPetsRC25to15RD30to20() {
 		underTest.oilRoboticPets();
-		RoboCat catCheck = (RoboCat)petRoboCat;
+		RoboCat catCheck = (RoboCat) petRoboCat;
 		int rustRC = catCheck.getRustLevel();
-		RoboDog dogCheck = (RoboDog)petRoboDog;
+		RoboDog dogCheck = (RoboDog) petRoboDog;
 		int rustRD = dogCheck.getRustLevel();
 		assertThat(rustRC, is(15));
 		assertThat(rustRD, is(20));
@@ -80,7 +80,7 @@ public class PetShelterTest {
 		assertThat(roboHappy, is(20));
 		assertThat(orgHappy, is(20));
 	}
-	
+
 	@Test
 	public void giveLasersToOnlyLasersHappiness10to20DecreaseOrgDog10to7() {
 		underTest.playLasersWithPets();
@@ -93,7 +93,7 @@ public class PetShelterTest {
 		assertThat(roboDHappy, is(20));
 		assertThat(orgDHappy, is(7));
 	}
-	
+
 	@Test
 	public void testTickAllShouldReduceHappy10to7() {
 		underTest.tickAll();
@@ -105,7 +105,7 @@ public class PetShelterTest {
 		assertThat(happyOD, is(7));
 		assertThat(happyRC, is(7));
 		assertThat(happyRD, is(7));
-		}
+	}
 
 	@Test
 	public void testThatCatWasteIncreasesLitterBoxWasteOnTick0to1() {
@@ -113,15 +113,15 @@ public class PetShelterTest {
 		int litterboxWaste = underTest.getLitterBoxWaste();
 		assertThat(litterboxWaste, is(1));
 	}
-	
+
 	@Test
 	public void testThatCleanLitterBoxWillCleanBoxTo0Waste() {
-		underTest.tickAll(); //create LitterBoxWaste
+		underTest.tickAll(); // create LitterBoxWaste
 		underTest.cleanLitterBox();
 		int litterboxWaste = underTest.getLitterBoxWaste();
 		assertThat(litterboxWaste, is(0));
 	}
-	
+
 	@Test
 	public void testThatCagesIncreaseCageWasteOnTick() {
 		OrganicDog orgDog2 = new OrganicDog("Sparky");
@@ -132,7 +132,7 @@ public class PetShelterTest {
 		assertThat(cageWaste, is(3));
 		assertThat(cage2, is(3));
 	}
-	
+
 	@Test
 	public void testThatCleanCageReduceCageWasteTo0() {
 		underTest.tickAll();
@@ -140,7 +140,7 @@ public class PetShelterTest {
 		int cageWaste = underTest.checkCageWaste(petOrgDog);
 		assertThat(cageWaste, is(0));
 	}
-	
+
 	@Test
 	public void assertThatLitterBoxWasteEQorGreater10ReduceOrgCatHealth10to9() {
 		underTest.takeInPet(new OrganicCat("Meow2"));
@@ -152,7 +152,7 @@ public class PetShelterTest {
 		int orgCatHealth = petOrgCat.getHealthLevel();
 		assertThat(orgCatHealth, is(9));
 	}
-	
+
 	@Test
 	public void assertThatCageWasteEQorGreater10ReduceOrgDogHealth10to9() {
 		underTest.tickAll();
@@ -161,14 +161,14 @@ public class PetShelterTest {
 		int orgDogHealth = petOrgDog.getHealthLevel();
 		assertThat(orgDogHealth, is(9));
 	}
-	
+
 	@Test
 	public void adoptAPetsoThereWillBe3PetsInShelter() {
 		underTest.adopt("ME-OW");
 		Collection<VirtualPet> allPets = underTest.getAllPets();
 		assertThat(allPets, containsInAnyOrder(petOrgCat, petOrgDog, petRoboDog));
 	}
-	
+
 	@Test
 	public void assertThatChaseToyMiceIncreaseCatHappinessfrom10to20DogDecrease10to7() {
 		underTest.playWithToyMice();
@@ -181,15 +181,43 @@ public class PetShelterTest {
 		assertThat(roboDHappy, is(7));
 		assertThat(orgDHappy, is(7));
 	}
-	
+
 	@Test
 	public void assertThatUserCanCreateSpecificPetType() {
 		underTest.takeInPet("Cat", "moo");
 		VirtualPet check = underTest.retrievePetInfo("moo");
 		assertThat(check.getName(), is("moo"));
 	}
+
+	@Test
+	public void increasePetHealthByTakingToVet9To10() {
+		//make PetHealth Drop
+		underTest.takeInPet(new OrganicCat("Meow2"));
+		underTest.takeInPet(new OrganicCat("Meow3"));
+		underTest.tickAll();
+		underTest.tickAll();
+		underTest.tickAll();
+		underTest.tickAll();
+		// vetCheck
+		underTest.callVet("Meow");
+		int orgCatHealth = petOrgCat.getHealthLevel();
+		assertThat(orgCatHealth, is(10));
+	}
 	
-	//Tested method by making cage public.  Returned to private
+	@Test
+	public void increaseRoboPetHealthByChangingBatteries9to10() {
+		//reduce RoboPetHealth
+		underTest.tickAll();
+		underTest.tickAll();
+		underTest.tickAll();
+		underTest.tickAll();
+		//change Batteries
+		underTest.changeBatteries("WO-OF");
+		int health = petRoboDog.getHealthLevel();
+		assertThat(health, is(10));
+	}
+	
+	// Tested method by making cage public. Returned to private
 //		@Test
 //		public void checkAdoptRemovesDogCage() {
 //		underTest.adopt("Woof");
@@ -197,7 +225,5 @@ public class PetShelterTest {
 //		assertThat(allDogs, containsInAnyOrder(petRoboDog));
 //		
 //	}
-	
-	
-	
+
 }

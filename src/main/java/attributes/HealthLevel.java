@@ -1,4 +1,4 @@
-package pets;
+package attributes;
 
 public class HealthLevel extends Attribute{
 

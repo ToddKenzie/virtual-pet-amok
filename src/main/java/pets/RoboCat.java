@@ -1,5 +1,7 @@
 package pets;
 
+import attributes.RustLevel;
+
 public class RoboCat extends RoboPet implements AttractedToLasers, PlaysWithToyMice {
 
 	

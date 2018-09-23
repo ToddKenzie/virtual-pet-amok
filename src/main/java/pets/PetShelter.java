@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import attributes.LitterBoxWaste;
+
 public class PetShelter {
 
 	private PetGenerator petGen = new PetGenerator();
@@ -35,7 +37,7 @@ public class PetShelter {
 	
 	public void adopt(String petName) {
 		VirtualPet vPet = allPets.get(petName);
-		if (vPet instanceof Walkable) {
+		if (vPet instanceof OrganicDog) {
 			dogCages.remove(vPet);
 		}
 		allPets.remove(petName);
@@ -164,6 +166,23 @@ public class PetShelter {
 		}
 	}
 
+	public boolean callVet(String petName) {
+		VirtualPet vPet = allPets.get(petName);
+		if (vPet instanceof OrganicPet) {
+			vPet.increaseHealth();
+			return true;
+		}
+		return false;
+	}
 
+	public boolean changeBatteries(String petName) {
+		VirtualPet vPet = allPets.get(petName);
+		if (vPet instanceof RoboPet) {
+			vPet.increaseHealth();
+			return true;
+		}
+		return false;
+	}
+	
 
 }

@@ -1,4 +1,4 @@
-package pets;
+package attributes;
 
 public class Happiness extends Attribute{
 	
@@ -11,7 +11,11 @@ public class Happiness extends Attribute{
 	}
 	
 	public void decreaseValue() {
-		value -= 3;
+		if (value - 3 < 0) {
+			value = 0;
+		} else {
+			value -= 3;
+		}
 	}
 
 }

@@ -1,5 +1,9 @@
 package pets;
 
+import attributes.Hunger;
+import attributes.Thirst;
+import attributes.Waste;
+
 public class OrganicDog extends OrganicPet implements Walkable, HatesToyMice, HatesLasers {
 
 	public OrganicDog(String name) {

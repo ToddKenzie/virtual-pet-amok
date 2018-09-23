@@ -1,5 +1,7 @@
 package pets;
 
+import attributes.RustLevel;
+
 public class RoboDog extends RoboPet implements Walkable, AttractedToLasers, HatesToyMice {
 
 	public RoboDog(String name) {
