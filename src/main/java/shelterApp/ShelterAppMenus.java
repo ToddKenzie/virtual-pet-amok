@@ -24,9 +24,9 @@ public class ShelterAppMenus {
 				petStatus += vPet + "\n";
 			}
 		}
-		petStatus += "\nLitterBox status is: " + shelter.getLitterBoxWaste() + "\n";
+		petStatus += "\nWaste Levels That May Need Your Attention\n";
+		petStatus += "LitterBox status is: " + shelter.getLitterBoxWaste() + "\n";
 		if (verifyOrganicDogExists(shelter)) {
-			petStatus += "Waste Level of the Dog Cages:\n";
 			for (VirtualPet vPet : shelter.getAllPets()) {
 				if (vPet instanceof OrganicDog) {
 					petStatus += vPet.getName() +"'s cage: " + shelter.checkCageWaste(vPet) + "\n";

@@ -129,8 +129,8 @@ public class PetShelterTest {
 		OrganicDog orgDog2 = new OrganicDog("Sparky");
 		underTest.takeInPet(orgDog2);
 		underTest.tickAll();
-		int cageWaste = underTest.checkCageWaste(petOrgDog);
-		int cage2 = underTest.checkCageWaste(orgDog2);
+		int cageWaste = underTest.checkCageWaste(petOrgDog).getValue();
+		int cage2 = underTest.checkCageWaste(orgDog2).getValue();
 		assertThat(cageWaste, is(3));
 		assertThat(cage2, is(3));
 	}
@@ -139,7 +139,7 @@ public class PetShelterTest {
 	public void testThatCleanCageReduceCageWasteTo0() {
 		underTest.tickAll();
 		underTest.cleanAllDogCages();
-		int cageWaste = underTest.checkCageWaste(petOrgDog);
+		int cageWaste = underTest.checkCageWaste(petOrgDog).getValue();
 		assertThat(cageWaste, is(0));
 	}
 

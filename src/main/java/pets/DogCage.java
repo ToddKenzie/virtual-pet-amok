@@ -1,19 +1,21 @@
 package pets;
 
+import attributes.CageWaste;
+
 public class DogCage {
 
-	private int cageWaste;
+	private CageWaste cageWaste = new CageWaste(0);
 
-	public int getCageWaste() {
+	public CageWaste getCageWaste() {
 		return cageWaste;
 	}
 
-	public void increaseCageWaste(OrganicPet orgPet) {
-		cageWaste += orgPet.getWaste();
+	public void increaseCageWaste(OrganicPet oPet) {
+		cageWaste.increaseValue(oPet.getWaste());
 	}
 
 	public void cleanDogCage() {
-		cageWaste = 0;
+		cageWaste.decreaseValue();
 	}
 
 }

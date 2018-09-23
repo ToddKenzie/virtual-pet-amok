@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import attributes.CageWaste;
 import attributes.LitterBoxWaste;
 
 public class PetShelter {
@@ -11,7 +12,7 @@ public class PetShelter {
 	private PetGenerator petGen = new PetGenerator();
 	
 	private Map<String, VirtualPet> allPets = new HashMap<>();
-	private Map<VirtualPet, DogCage> dogCages = new HashMap<>();
+	private Map<OrganicPet, DogCage> dogCages = new HashMap<>();
 	
 	private LitterBoxWaste litterBoxWaste = new LitterBoxWaste(0);
 	
@@ -26,7 +27,8 @@ public class PetShelter {
 	protected void takeInPet(VirtualPet pet) {
 		allPets.put(pet.getName(), pet);
 		if(pet instanceof OrganicDog) {
-			dogCages.put(pet, new DogCage());
+			OrganicPet oPet = (OrganicPet)pet;
+			dogCages.put(oPet, new DogCage());
 		}
 	}
 
@@ -119,7 +121,7 @@ public class PetShelter {
 		for (VirtualPet vPet : this.getAllPets()) {
 			if(vPet instanceof OrganicPet) {
 				OrganicPet orgPet = (OrganicPet)vPet;
-				if(orgPet instanceof Walkable) {
+				if(orgPet instanceof OrganicDog) {
 					dogCages.get(orgPet).increaseCageWaste(orgPet);
 				} else {
 					litterBoxWaste.increaseValue();
@@ -145,13 +147,13 @@ public class PetShelter {
 
 	private void reduceDogHealthFromCage() {
 		for(VirtualPet vPet : dogCages.keySet()) {
-			if (dogCages.get(vPet).getCageWaste() >= 10) {
+			if (dogCages.get(vPet).getCageWaste().getValue() >= 10) {
 				vPet.reduceHealth();
 			}
 		}
 	}
 	
-	public int checkCageWaste(VirtualPet petOrgDog) {
+	public CageWaste checkCageWaste(VirtualPet petOrgDog) {
 		return dogCages.get(petOrgDog).getCageWaste();
 	}
 
