@@ -7,10 +7,10 @@ public abstract class MaintenanceStats extends Attribute {
 	}
 	
 	public void decreaseValue() {
-		if (value - 4 < 0) {
+		if (value - 5 < 0) {
 			value = 0;
 		} else {
-			value -= 4;
+			value -= 5;
 		}
 	}
 	

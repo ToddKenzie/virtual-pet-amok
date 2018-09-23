@@ -21,6 +21,11 @@ public abstract class VirtualPet {
 	public int getHappiness() {
 		return happiness.getValue();
 	}
+	
+	public void play() {
+		happiness.increaseValue();
+	}
+	
 
 	public VirtualPet(String name) {
 		this.name = name;

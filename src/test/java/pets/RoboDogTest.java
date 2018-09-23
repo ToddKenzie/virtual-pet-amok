@@ -16,10 +16,10 @@ public class RoboDogTest {
 	}
 	
 	@Test
-	public void verifyThatOiledReducesRusty8to4() {
+	public void verifyThatOiledReducesRusty8to3() {
 		underTest.oil();
 		int rust = underTest.getRustLevel();
-		assertThat(rust, is(4));
+		assertThat(rust, is(3));
 	}
 	
 	@Test

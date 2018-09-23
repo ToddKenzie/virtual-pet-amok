@@ -17,17 +17,17 @@ public class OrganicCatTest {
 	}
 	
 	@Test
-	public void verifyFeedReducesHungerFrom6to2() {
+	public void verifyFeedReducesHungerFrom6to1() {
 		underTest.feed();
 		int hunger = underTest.getHunger();
-		assertThat(hunger, is(2));
+		assertThat(hunger, is(1));
 	}
 	
 	@Test
-	public void verifyDrinkReducesThirstFrom6to2() {
+	public void verifyDrinkReducesThirstFrom6to1() {
 		underTest.drink();
 		int thirst = underTest.getThirst();
-		assertThat(thirst, is(2));
+		assertThat(thirst, is(1));
 	}
 	
 	@Test

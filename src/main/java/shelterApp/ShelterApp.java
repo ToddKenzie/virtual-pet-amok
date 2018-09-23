@@ -80,6 +80,11 @@ public class ShelterApp {
 					System.out.println("The dogs just stare at you.");
 				}
 
+			} else if (userMainMenuInput.equalsIgnoreCase("P")) {
+				String petToPlayWith = verifyPetNameExists();
+				shelter.playWithOnePet(petToPlayWith);
+				System.out.println("You play with " + petToPlayWith +".  The rest of the pets stare at you.\nPerhaps playing with only one isn't the best option.");
+				
 			} else if (userMainMenuInput.equalsIgnoreCase("CB")) {
 				shelter.cleanLitterBox();
 				System.out.println("You clean out the cats' litterbox.");

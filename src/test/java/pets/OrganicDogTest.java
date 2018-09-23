@@ -16,17 +16,17 @@ public class OrganicDogTest {
 	}
 	
 	@Test
-	public void verifyAnOrganicDogCanBeFed8to7() {
+	public void verifyAnOrganicDogCanBeFed8to3() {
 		underTest.feed();
 		int hunger = underTest.getHunger();
-		assertThat(hunger, is(4));
+		assertThat(hunger, is(3));
 	}
 	
 	@Test
-	public void verifyAnOrganicDogCanDrink8to4() {
+	public void verifyAnOrganicDogCanDrink8to3() {
 		underTest.drink();
 		int thirst = underTest.getThirst();
-		assertThat(thirst, is(4));
+		assertThat(thirst, is(3));
 	}
 	
 	@Test

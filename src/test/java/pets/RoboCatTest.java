@@ -16,10 +16,10 @@ public class RoboCatTest {
 	}
 	
 	@Test
-	public void verifyOilRedcuesRustFrom6to2() {
+	public void verifyOilRedcuesRustFrom6to1() {
 		underTest.oil();
 		int rust = underTest.getRustLevel();
-		assertThat(rust, is(2));
+		assertThat(rust, is(1));
 	}
 	
 	@Test

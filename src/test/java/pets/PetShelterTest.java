@@ -42,36 +42,36 @@ public class PetShelterTest {
 	}
 
 	@Test
-	public void feedOnlyOrganicPetsOC6to2OD8to4() {
+	public void feedOnlyOrganicPetsOC6to1OD8to3() {
 		underTest.feedOrganicPets();
 		OrganicCat catCheck = (OrganicCat) petOrgCat;
 		int hungerOC = catCheck.getHunger();
 		OrganicDog dogCheck = (OrganicDog) petOrgDog;
 		int hungerOD = dogCheck.getHunger();
-		assertThat(hungerOC, is(2));
-		assertThat(hungerOD, is(4));
+		assertThat(hungerOC, is(1));
+		assertThat(hungerOD, is(3));
 	}
 
 	@Test
-	public void waterOnlyOrganicPetsOC6to2OD8to4() {
+	public void waterOnlyOrganicPetsOC6to1OD8to3() {
 		underTest.giveWaterToOrganicPets();
 		OrganicCat catCheck = (OrganicCat) petOrgCat;
 		int thirstOC = catCheck.getThirst();
 		OrganicDog dogCheck = (OrganicDog) petOrgDog;
 		int thirstOD = dogCheck.getThirst();
-		assertThat(thirstOC, is(2));
-		assertThat(thirstOD, is(4));
+		assertThat(thirstOC, is(1));
+		assertThat(thirstOD, is(3));
 	}
 
 	@Test
-	public void giveOilToOnlyRoboticPetsRC6to2RD8to4() {
+	public void giveOilToOnlyRoboticPetsRC6to1RD8to3() {
 		underTest.oilRoboticPets();
 		RoboCat catCheck = (RoboCat) petRoboCat;
 		int rustRC = catCheck.getRustLevel();
 		RoboDog dogCheck = (RoboDog) petRoboDog;
 		int rustRD = dogCheck.getRustLevel();
-		assertThat(rustRC, is(2));
-		assertThat(rustRD, is(4));
+		assertThat(rustRC, is(1));
+		assertThat(rustRD, is(3));
 	}
 
 	@Test
@@ -131,8 +131,8 @@ public class PetShelterTest {
 		underTest.tickAll();
 		int cageWaste = underTest.checkCageWaste(petOrgDog).getValue();
 		int cage2 = underTest.checkCageWaste(orgDog2).getValue();
-		assertThat(cageWaste, is(3));
-		assertThat(cage2, is(3));
+		assertThat(cageWaste, is(1));
+		assertThat(cage2, is(1));
 	}
 
 	@Test
@@ -157,6 +157,12 @@ public class PetShelterTest {
 
 	@Test
 	public void assertThatCageWasteEQorGreater10ReduceOrgDogHealth10to9() {
+		underTest.tickAll();
+		underTest.tickAll();
+		underTest.tickAll();
+		underTest.feedOrganicPets();
+		underTest.giveWaterToOrganicPets();
+		underTest.tickAll();
 		underTest.tickAll();
 		underTest.tickAll();
 		underTest.tickAll();
@@ -243,11 +249,13 @@ public class PetShelterTest {
 		underTest.tickAll();
 		underTest.cleanAllDogCages();
 		underTest.tickAll();
+		underTest.cleanAllDogCages();
 		underTest.cleanLitterBox();
 		underTest.tickAll();
+		underTest.cleanAllDogCages();
+		underTest.tickAll();
+		underTest.tickAll();
 		int happyOD = petOrgDog.getHealthLevel();
-		underTest.tickAll();
-		underTest.tickAll();
 
 		int happyOC = petOrgCat.getHealthLevel();
 		assertThat(happyOC, is(9));

@@ -185,5 +185,9 @@ public class PetShelter {
 		return false;
 	}
 	
+	public void playWithOnePet(String petName) {
+		allPets.get(petName).play();
+	}
+	
 
 }

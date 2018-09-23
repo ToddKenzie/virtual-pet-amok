@@ -7,7 +7,7 @@ public class CageWaste extends Waste {
 	}
 	
 	public void increaseValue(int value) {
-		this.value += value;
+		this.value += (int)(value/3);
 	}
 	
 
