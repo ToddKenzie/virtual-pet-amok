@@ -16,12 +16,20 @@ public class PetShelter {
 	
 	private LitterBoxWaste litterBoxWaste = new LitterBoxWaste(0);
 	
+	public Collection<VirtualPet> getAllPets() {
+		return allPets.values();
+	}
+	
+	public CageWaste checkCageWaste(VirtualPet petOrgDog) {
+		return dogCages.get(petOrgDog).getCageWaste();
+	}
+
 	public LitterBoxWaste getLitterBoxWaste() {
 		return litterBoxWaste;
 	}
 	
-	public Collection<VirtualPet> getAllPets() {
-		return allPets.values();
+	public VirtualPet retrievePetInfo(String petName) {
+		return allPets.get(petName);
 	}
 	
 	protected void takeInPet(VirtualPet pet) {
@@ -45,38 +53,34 @@ public class PetShelter {
 		allPets.remove(petName);
 	}
 	
-	public VirtualPet retrievePetInfo(String petName) {
-		return allPets.get(petName);
-	}
-
-	public void feedOrganicPets() {
+	public void feedFeedablePets() {
 		for (VirtualPet vPet : this.getAllPets()) {
-			if (vPet instanceof OrganicPet) {
-				OrganicPet petToFeed = (OrganicPet)vPet;
+			if (vPet instanceof Feedable) {
+				Feedable petToFeed = (Feedable)vPet;
 				petToFeed.feed();
 			}
 		}
 	}
 
-	public void giveWaterToOrganicPets() {
+	public void giveWaterToDrinkablePets() {
 		for (VirtualPet vPet : this.getAllPets()) {
-			if (vPet instanceof OrganicPet) {
-				OrganicPet petToGiveWater = (OrganicPet)vPet;
+			if (vPet instanceof Drinkable) {
+				Drinkable petToGiveWater = (Drinkable)vPet;
 				petToGiveWater.drink();
 			}
 		}		
 	}
 
-	public void oilRoboticPets() {
+	public void oilOilablePets() {
 		for (VirtualPet vPet : this.getAllPets()) {
-			if (vPet instanceof RoboPet) {
-				RoboPet petToOil = (RoboPet)vPet;
+			if (vPet instanceof Oilable) {
+				Oilable petToOil = (Oilable)vPet;
 				petToOil.oil();
 			}
 		}			
 	}
 
-	public void walkDogs() {
+	public void walkWalkablePets() {
 		for(VirtualPet vPet : this.getAllPets()) {
 			if(vPet instanceof Walkable) {
 				Walkable petToWalk = (Walkable)vPet;
@@ -109,6 +113,38 @@ public class PetShelter {
 		}
 	}
 
+	public void playWithOnePet(String petName) {
+		allPets.get(petName).play();
+	}
+	
+	public boolean callVet(String petName) {
+		VirtualPet vPet = allPets.get(petName);
+		if (vPet instanceof OrganicPet) {
+			vPet.increaseHealth();
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean changeBatteries(String petName) {
+		VirtualPet vPet = allPets.get(petName);
+		if (vPet instanceof RoboPet) {
+			vPet.increaseHealth();
+			return true;
+		}
+		return false;
+	}
+	
+	public void cleanLitterBox() {
+		litterBoxWaste.decreaseValue();
+	}
+	
+	public void cleanAllDogCages() {
+		for (DogCage cage : dogCages.values()) {
+			cage.cleanDogCage();
+		}
+	}
+	
 	public void tickAll() {
 		for(VirtualPet vPet : this.getAllPets()) {
 			vPet.tick();
@@ -153,41 +189,6 @@ public class PetShelter {
 		}
 	}
 	
-	public CageWaste checkCageWaste(VirtualPet petOrgDog) {
-		return dogCages.get(petOrgDog).getCageWaste();
-	}
 
-	public void cleanLitterBox() {
-		litterBoxWaste.decreaseValue();
-	}
-
-	public void cleanAllDogCages() {
-		for (DogCage cage : dogCages.values()) {
-			cage.cleanDogCage();
-		}
-	}
-
-	public boolean callVet(String petName) {
-		VirtualPet vPet = allPets.get(petName);
-		if (vPet instanceof OrganicPet) {
-			vPet.increaseHealth();
-			return true;
-		}
-		return false;
-	}
-
-	public boolean changeBatteries(String petName) {
-		VirtualPet vPet = allPets.get(petName);
-		if (vPet instanceof RoboPet) {
-			vPet.increaseHealth();
-			return true;
-		}
-		return false;
-	}
-	
-	public void playWithOnePet(String petName) {
-		allPets.get(petName).play();
-	}
-	
 
 }

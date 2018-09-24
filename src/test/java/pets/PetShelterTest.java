@@ -43,7 +43,7 @@ public class PetShelterTest {
 
 	@Test
 	public void feedOnlyOrganicPetsOC6to1OD8to3() {
-		underTest.feedOrganicPets();
+		underTest.feedFeedablePets();
 		OrganicCat catCheck = (OrganicCat) petOrgCat;
 		int hungerOC = catCheck.getHunger();
 		OrganicDog dogCheck = (OrganicDog) petOrgDog;
@@ -54,7 +54,7 @@ public class PetShelterTest {
 
 	@Test
 	public void waterOnlyOrganicPetsOC6to1OD8to3() {
-		underTest.giveWaterToOrganicPets();
+		underTest.giveWaterToDrinkablePets();
 		OrganicCat catCheck = (OrganicCat) petOrgCat;
 		int thirstOC = catCheck.getThirst();
 		OrganicDog dogCheck = (OrganicDog) petOrgDog;
@@ -65,7 +65,7 @@ public class PetShelterTest {
 
 	@Test
 	public void giveOilToOnlyRoboticPetsRC6to1RD8to3() {
-		underTest.oilRoboticPets();
+		underTest.oilOilablePets();
 		RoboCat catCheck = (RoboCat) petRoboCat;
 		int rustRC = catCheck.getRustLevel();
 		RoboDog dogCheck = (RoboDog) petRoboDog;
@@ -76,7 +76,7 @@ public class PetShelterTest {
 
 	@Test
 	public void giveWalkToOnlyDogsHappiness10to14() {
-		underTest.walkDogs();
+		underTest.walkWalkablePets();
 		int roboHappy = petRoboDog.getHappiness();
 		int orgHappy = petOrgDog.getHappiness();
 		assertThat(roboHappy, is(14));
@@ -160,8 +160,8 @@ public class PetShelterTest {
 		underTest.tickAll();
 		underTest.tickAll();
 		underTest.tickAll();
-		underTest.feedOrganicPets();
-		underTest.giveWaterToOrganicPets();
+		underTest.feedFeedablePets();
+		underTest.giveWaterToDrinkablePets();
 		underTest.tickAll();
 		underTest.tickAll();
 		underTest.tickAll();
@@ -231,9 +231,9 @@ public class PetShelterTest {
 		underTest.cleanAllDogCages();
 		underTest.tickAll();
 		underTest.cleanAllDogCages();
-		underTest.oilRoboticPets();
-		underTest.feedOrganicPets();
-		underTest.giveWaterToOrganicPets();
+		underTest.oilOilablePets();
+		underTest.feedFeedablePets();
+		underTest.giveWaterToDrinkablePets();
 		underTest.tickAll();
 	
 		underTest.cleanAllDogCages();
@@ -242,9 +242,9 @@ public class PetShelterTest {
 		underTest.cleanAllDogCages();
 		underTest.tickAll();
 	
-		underTest.oilRoboticPets();
-		underTest.feedOrganicPets();
-		underTest.giveWaterToOrganicPets();
+		underTest.oilOilablePets();
+		underTest.feedFeedablePets();
+		underTest.giveWaterToDrinkablePets();
 		underTest.cleanAllDogCages();
 		underTest.tickAll();
 		underTest.cleanAllDogCages();
