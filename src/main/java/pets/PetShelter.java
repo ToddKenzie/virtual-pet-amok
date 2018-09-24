@@ -53,40 +53,52 @@ public class PetShelter {
 		allPets.remove(petName);
 	}
 	
-	public void feedFeedablePets() {
+	public boolean feedFeedablePets() {
+		boolean didFeedPet = false;
 		for (VirtualPet vPet : this.getAllPets()) {
 			if (vPet instanceof Feedable) {
 				Feedable petToFeed = (Feedable)vPet;
 				petToFeed.feed();
+				didFeedPet = true;
 			}
 		}
+		return didFeedPet;
 	}
 
-	public void giveWaterToDrinkablePets() {
+	public boolean giveWaterToDrinkablePets() {
+		boolean didPetDrink = false;
 		for (VirtualPet vPet : this.getAllPets()) {
 			if (vPet instanceof Drinkable) {
 				Drinkable petToGiveWater = (Drinkable)vPet;
 				petToGiveWater.drink();
+				didPetDrink = true;
 			}
-		}		
+		}
+		return didPetDrink;
 	}
 
-	public void oilOilablePets() {
+	public boolean oilOilablePets() {
+		boolean didOilPet = false;
 		for (VirtualPet vPet : this.getAllPets()) {
 			if (vPet instanceof Oilable) {
 				Oilable petToOil = (Oilable)vPet;
 				petToOil.oil();
+				didOilPet = true;
 			}
-		}			
+		}
+		return didOilPet;
 	}
 
-	public void walkWalkablePets() {
+	public boolean walkWalkablePets() {
+		boolean didWalkPet = false;
 		for(VirtualPet vPet : this.getAllPets()) {
 			if(vPet instanceof Walkable) {
 				Walkable petToWalk = (Walkable)vPet;
 				petToWalk.walk();
+				didWalkPet = true;
 			}
 		}
+		return didWalkPet;
 	}
 
 	public void playLasersWithPets() {

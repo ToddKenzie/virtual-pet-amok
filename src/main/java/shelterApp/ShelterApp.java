@@ -22,24 +22,21 @@ public class ShelterApp {
 			String userMainMenuInput = input.nextLine();
 
 			if (userMainMenuInput.equalsIgnoreCase("F")) {
-				if (verifyFeedablePetExists()) {
-					shelter.feedFeedablePets();
+				if (shelter.feedFeedablePets()) {
 					System.out.println("\nYou feed all of the pets.");
 				} else {
 					System.out.println("\nThere are no pets present that can be fed.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("D")) {
-				if (verifyDrinkableExists()) {
-					shelter.giveWaterToDrinkablePets();
+				if (shelter.giveWaterToDrinkablePets()) {
 					System.out.println("\nYou give water to all of the thirsty pets.");
 				} else {
 					System.out.println("\nThere are no pets that like water here.");
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("O")) {
-				if (verifyOilableExists()) {
-					shelter.oilOilablePets();
+				if (shelter.oilOilablePets()) {
 					System.out.println("\nYou lubricate the robots.");
 				} else {
 					System.out.println(
@@ -47,8 +44,7 @@ public class ShelterApp {
 				}
 
 			} else if (userMainMenuInput.equalsIgnoreCase("W")) {
-				if (verifyWalkablePetExists()) {
-					shelter.walkWalkablePets();
+				if (shelter.walkWalkablePets()) {
 					System.out.println("\nYou walk the dogs.  They all seem to be happier");
 					if (verifyOrganicDogExists()) {
 						System.out.println(
@@ -205,15 +201,6 @@ public class ShelterApp {
 		return false;
 	}
 
-	public static boolean verifyWalkablePetExists() {
-		for (VirtualPet vPet : shelter.getAllPets()) {
-			if (vPet instanceof Walkable) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public static boolean verifyOrganicDogExists() {
 		for (VirtualPet vPet : shelter.getAllPets()) {
 			if (vPet instanceof OrganicDog) {
@@ -223,34 +210,6 @@ public class ShelterApp {
 		return false;
 	}
 	
-	
-	public static boolean verifyFeedablePetExists() {
-		for (VirtualPet vPet : shelter.getAllPets()) {
-			if (vPet instanceof Feedable) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public static boolean verifyDrinkableExists() {
-		for (VirtualPet vPet : shelter.getAllPets()) {
-			if (vPet instanceof Drinkable) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public static boolean verifyOilableExists() {
-		for (VirtualPet vPet : shelter.getAllPets()) {
-			if (vPet instanceof Oilable) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 
 	public static boolean verifyAttractedToLasersPetExists() {
 		for (VirtualPet vPet : shelter.getAllPets()) {
