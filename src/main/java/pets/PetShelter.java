@@ -12,7 +12,7 @@ public class PetShelter {
 	private PetGenerator petGen = new PetGenerator();
 	
 	private Map<String, VirtualPet> allPets = new HashMap<>();
-	private Map<OrganicPet, DogCage> dogCages = new HashMap<>();
+	private Map<VirtualPet, DogCage> dogCages = new HashMap<>();
 	
 	private LitterBoxWaste litterBoxWaste = new LitterBoxWaste(0);
 	
@@ -35,7 +35,7 @@ public class PetShelter {
 	protected void takeInPet(VirtualPet pet) {
 		allPets.put(pet.getName(), pet);
 		if(pet instanceof OrganicDog) {
-			OrganicPet oPet = (OrganicPet)pet;
+			OrganicDog oPet = (OrganicDog)pet;
 			dogCages.put(oPet, new DogCage());
 		}
 	}
@@ -57,8 +57,7 @@ public class PetShelter {
 		boolean didFeedPet = false;
 		for (VirtualPet vPet : this.getAllPets()) {
 			if (vPet instanceof Feedable) {
-				Feedable petToFeed = (Feedable)vPet;
-				petToFeed.feed();
+				((Feedable)vPet).feed();
 				didFeedPet = true;
 			}
 		}
@@ -69,8 +68,7 @@ public class PetShelter {
 		boolean didPetDrink = false;
 		for (VirtualPet vPet : this.getAllPets()) {
 			if (vPet instanceof Drinkable) {
-				Drinkable petToGiveWater = (Drinkable)vPet;
-				petToGiveWater.drink();
+				((Drinkable)vPet).drink();
 				didPetDrink = true;
 			}
 		}
@@ -81,8 +79,7 @@ public class PetShelter {
 		boolean didOilPet = false;
 		for (VirtualPet vPet : this.getAllPets()) {
 			if (vPet instanceof Oilable) {
-				Oilable petToOil = (Oilable)vPet;
-				petToOil.oil();
+				((Oilable)vPet).oil();
 				didOilPet = true;
 			}
 		}
@@ -93,8 +90,7 @@ public class PetShelter {
 		boolean didWalkPet = false;
 		for(VirtualPet vPet : this.getAllPets()) {
 			if(vPet instanceof Walkable) {
-				Walkable petToWalk = (Walkable)vPet;
-				petToWalk.walk();
+				((Walkable)vPet).walk();
 				didWalkPet = true;
 			}
 		}
@@ -104,11 +100,9 @@ public class PetShelter {
 	public void playLasersWithPets() {
 		for(VirtualPet vPet : this.getAllPets()) {
 			if(vPet instanceof AttractedToLasers) {
-				AttractedToLasers petToPlayLasersWith = (AttractedToLasers)vPet;
-				petToPlayLasersWith.playWithLasers();
+				((AttractedToLasers)vPet).playWithLasers();
 			} else if (vPet instanceof HatesLasers) {
-				HatesLasers petThatHatesLasers = (HatesLasers)vPet;
-				petThatHatesLasers.hatesLasers();
+				((HatesLasers)vPet).hatesLasers();
 			}
 		}
 	}
@@ -116,11 +110,9 @@ public class PetShelter {
 	public void playWithToyMice() {
 		for(VirtualPet vPet : this.getAllPets()) {
 			if(vPet instanceof PlaysWithToyMice) {
-				PlaysWithToyMice petToPlayMiceWith = (PlaysWithToyMice)vPet;
-				petToPlayMiceWith.playWithToyMice();
+				((PlaysWithToyMice)vPet).playWithToyMice();
 			} else if (vPet instanceof HatesToyMice) {
-				HatesToyMice petThatHatesMice = (HatesToyMice)vPet;
-				petThatHatesMice.hatesToyMice();
+				((HatesToyMice)vPet).hatesToyMice();
 			}
 		}
 	}
